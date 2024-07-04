@@ -1,0 +1,65 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.45263",
+   "Default View_TopLeft":"187,343",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0 threadsafe
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 6 -x 1870 -y 360 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 6 -x 1870 -y 520 -defaultsOSRD
+preplace port port-id_DC_out -pg 1 -lvl 6 -x 1870 -y 120 -defaultsOSRD
+preplace port port-id_WRX_out -pg 1 -lvl 6 -x 1870 -y 140 -defaultsOSRD
+preplace port port-id_dbg_LED0 -pg 1 -lvl 6 -x 1870 -y 280 -defaultsOSRD
+preplace port port-id_dbg_LED1 -pg 1 -lvl 6 -x 1870 -y 300 -defaultsOSRD
+preplace port port-id_dbg_LED2 -pg 1 -lvl 6 -x 1870 -y 340 -defaultsOSRD
+preplace port port-id_dbg_SW -pg 1 -lvl 0 -x -10 -y 540 -defaultsOSRD
+preplace portBus tftData_out -pg 1 -lvl 6 -x 1870 -y 160 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 230 -y 410 -defaultsOSRD
+preplace inst axi_bram_ctrl_0 -pg 1 -lvl 3 -x 940 -y 620 -defaultsOSRD
+preplace inst axi_bram_ctrl_0_bram -pg 1 -lvl 4 -x 1260 -y 700 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 2 -x 610 -y 440 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 230 -y 220 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 3 -x 940 -y 270 -defaultsOSRD
+preplace inst IO_Mapper_0 -pg 1 -lvl 4 -x 1260 -y 150 -defaultsOSRD
+preplace inst TTF_Driver_0 -pg 1 -lvl 5 -x 1640 -y 150 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 3 -x 940 -y 760 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 3 -x 940 -y 860 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 5 20 100 460 270 790 370 1090 310 1470J
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 110 430
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 440 290 760
+preplace netloc axi_gpio_0_gpio_io_o 1 3 1 1080 140n
+preplace netloc IO_Mapper_0_portB 1 3 2 N 300 1400
+preplace netloc IO_Mapper_0_nEnable 1 4 1 1460 80n
+preplace netloc IO_Mapper_0_tftDrv_start 1 4 1 1440 120n
+preplace netloc IO_Mapper_0_tftDrv_override 1 4 1 1430 120n
+preplace netloc IO_Mapper_0_tftDrv_DC_in 1 4 1 N 160
+preplace netloc IO_Mapper_0_tftDrv_WRX_in 1 4 1 N 180
+preplace netloc IO_Mapper_0_tftDrv_data 1 4 1 1450 100n
+preplace netloc TTF_Driver_0_ready 1 3 3 1120 330 NJ 330 1820
+preplace netloc TTF_Driver_0_DC_out 1 5 1 NJ 120
+preplace netloc TTF_Driver_0_WRX_out 1 5 1 NJ 140
+preplace netloc TTF_Driver_0_tftData_out 1 5 1 NJ 160
+preplace netloc TTF_Driver_0_bramEN 1 3 3 1110 340 NJ 340 1810
+preplace netloc TTF_Driver_0_bramAddress 1 3 3 1100 320 NJ 320 1800
+preplace netloc axi_bram_ctrl_0_bram_doutb 1 3 2 1120 350 1480J
+preplace netloc xlconstant_0_dout 1 3 1 NJ 760
+preplace netloc xlconstant_1_dout 1 3 1 1080J 780n
+preplace netloc IO_Mapper_0_dbg_LED0 1 4 2 1410J 10 1850J
+preplace netloc IO_Mapper_0_dbg_LED1 1 4 2 1420J 20 1840J
+preplace netloc IO_Mapper_0_dbg_LED2 1 4 2 1440J 280 1830J
+preplace netloc dbg_SW_0_1 1 0 4 10J 120 470J 180 NJ 180 NJ
+preplace netloc processing_system7_0_DDR 1 1 5 450J 350 800J 360 NJ 360 NJ 360 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 5 470J 360 770J 520 NJ 520 NJ 520 NJ
+preplace netloc axi_bram_ctrl_0_BRAM_PORTA 1 3 1 N 620
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 N 420
+preplace netloc axi_smc_M00_AXI 1 2 1 750 430n
+preplace netloc axi_smc_M01_AXI 1 2 1 780 250n
+levelinfo -pg 1 -10 230 610 940 1260 1640 1870
+pagesize -pg 1 -db -bbox -sgen -120 0 2020 920
+"
+}
+{
+   "da_axi4_cnt":"2",
+   "da_bram_cntlr_cnt":"1",
+   "da_ps7_cnt":"1"
+}
