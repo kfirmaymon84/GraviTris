@@ -1,4 +1,4 @@
-# Install script for directory: C:/FPGA/FPGA_FUN/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/scuwdt/src
+# Install script for directory: C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/scuwdt/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

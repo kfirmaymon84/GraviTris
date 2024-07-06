@@ -1,4 +1,4 @@
-# Install script for directory: C:/FPGA/FPGA_FUN/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/standalone/src/common/intr
+# Install script for directory: C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/standalone/src/common/intr
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
