@@ -1,9 +1,13 @@
 #include "commonDisplayHandler.h"
+#include <sleep.h>
 #include <stdint.h>
 #include <stdio.h>
 #include "stdbool.h"
 
-//#define FPGA
+#define FPGA
+#ifdef FPGA
+#include "xil_printf.h"
+#endif
 #include "displayHandler.h"
 #include "drawObjects.h"
 
@@ -217,7 +221,6 @@ void drawScore(uint16_t score, bool isDrawBorder) {
     uint8_t dig_yPos = yPos + 3;
     //Draw digits
     for (int i = 0; i < 5; i++) {
-        //xil_printf("%d, x=%d, y=%d\n", digits[i], dig_xPos + (i * digitWidth), dig_yPos);
         drawBitmap(&numbers[digits[i]][0],
             dig_xPos + (i * digitWidth),
             dig_yPos,
@@ -225,5 +228,4 @@ void drawScore(uint16_t score, bool isDrawBorder) {
             digitHeight,
             white);
     }
-
 }
