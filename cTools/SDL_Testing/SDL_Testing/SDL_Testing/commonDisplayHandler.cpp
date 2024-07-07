@@ -1,9 +1,11 @@
 #include "commonDisplayHandler.h"
 #include <stdint.h>
 #include <stdio.h>
+#include "stdbool.h"
 
 //#define FPGA
 #include "displayHandler.h"
+#include "drawObjects.h"
 
 const uint16_t colorPallet[] = { BLACK, MAROON, GREEN, OLIVE,
                             NAVY, PURPLE, TEAL, SILVER,
@@ -12,17 +14,16 @@ const uint16_t colorPallet[] = { BLACK, MAROON, GREEN, OLIVE,
 
 //############################# Common Display Handler //#############################
 
-void tft_SetDisplayWindow(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
-	setDisplayWindow(x, y, x + width, y + height);
-}
+// void tft_SetDisplayWindow(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
+// 	setDisplayWindow(x, y, x + width, y + height);
+// }
 
-// draw 8 color bar to memory
+//Draw 8 color bar to memory
 void draw8ColorBars() {
-#define BARS 8
+    const int BAR_WIDTH = DISPLAY_WIDTH / 8;
+    uint8_t barColor[8] = { white, yellow, teal, green, fuchsia, red, blue, black };
 
-    const int BAR_WIDTH = DISPLAY_WIDTH / BARS;
-    uint8_t barColor[BARS] = { white, yellow, teal, green, fuchsia, red, blue, black };
-
+    clrBuff(240, 240);
     setDisplayWindow(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
     uint16_t pixelCounter = 0;
@@ -30,21 +31,18 @@ void draw8ColorBars() {
     {
         for (int w = 0; w < DISPLAY_WIDTH; w++) {
             uint8_t idx = w / BAR_WIDTH;
-            
             writePixel(pixelCounter++, barColor[idx]);
         }
     }
+    drawMemory();
 }
 
-uint8_t drawBitmap(uint8_t* img, uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color) {
+uint8_t drawBitmap(uint8_t *img, uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color) {
+    clrBuff(width, height);
     setDisplayWindow(x, y, width, height);
 
     uint16_t pixel2Draw = width * height;
-    uint16_t byteCounter = 0;
-    uint8_t pixel = 0x00;
     uint32_t u32Pixels = 0;
-    //uint8_t idx = 7; // bit mask select
-    uint8_t bitPixels = img[byteCounter];
     uint16_t u32Idx = 1;
 
     uint8_t byteIdx = 0;
@@ -52,7 +50,7 @@ uint8_t drawBitmap(uint8_t* img, uint8_t x, uint8_t y, uint8_t width, uint8_t he
         uint8_t b = img[byteIdx];
         for (uint8_t bitIdx = 8; bitIdx > 0; bitIdx--) {
             if (b & (0x01 << (bitIdx - 1))) {
-                u32Pixels |= color << ((bitIdx-1)*4);
+                u32Pixels |= color << ((bitIdx - 1) * 4);
             }
         }
 
@@ -61,35 +59,32 @@ uint8_t drawBitmap(uint8_t* img, uint8_t x, uint8_t y, uint8_t width, uint8_t he
         write32ToMemory(u32Idx++, u32Pixels);
         u32Pixels = 0;
     }
-
+    drawMemory();
     return 1;
 }
 
 uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors) {
+    clrBuff(10, 10);
     setDisplayWindow(x, y, 10, 10);
 
     uint8_t borderColor = white;
     uint8_t color1 = colors >> 4;
     uint8_t color2 = colors & 0x0F;
-    uint16_t pixelCounter = 0;
     for (uint8_t line = 0; line < 10; line++) {
         // Draw line 0 and last full color 1
         if (line == 0 || line == 9) {
-            for(int i=0;i<10;i++){
+            for (int i = 0; i < 10; i++) {
                 writePixel((line * 10) + i, borderColor);
             }
-
-            pixelCounter += 10;
         }
         else if (line == 1 || line == 2 || line == 7 || line == 8) {
             // draw line 1,2,7,8
             for (int i = 0; i < 10; i++) {
-                if(i==0 || i == 9)
+                if (i == 0 || i == 9)
                     writePixel((line * 10) + i, borderColor);
                 else
                     writePixel((line * 10) + i, color1);
             }
-            pixelCounter += 10;
         }
         else if (line == 3 || line == 6) {
             // draw lines 3, 6
@@ -99,7 +94,6 @@ uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors) {
                 else
                     writePixel((line * 10) + i, borderColor);
             }
-            pixelCounter += 10;
         }
         else
         {
@@ -107,12 +101,11 @@ uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors) {
             for (int i = 0; i < 10; i++) {
                 if (i == 1 || i == 2 || i == 7 || i == 8)
                     writePixel((line * 10) + i, color1);
-                else if(i == 4 || i == 5)
+                else if (i == 4 || i == 5)
                     writePixel((line * 10) + i, color2);
                 else
                     writePixel((line * 10) + i, borderColor);
             }
-            pixelCounter += 10;
         }
     }
     return 1;
@@ -123,6 +116,7 @@ uint8_t drawBorder(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t 
     if (width < 6 || height < 6)
         return 0;
 
+    clrBuff(width, height);
     //Set x,y, width, height
     setDisplayWindow(x, y, width, height);
 
@@ -163,7 +157,8 @@ uint8_t drawBorder(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t 
                 }
                 pixelCounter++;
             }
-        }else {
+        }
+        else {
             for (uint8_t i = 0; i < width; i++) {
                 uint8_t idx = pixelCounter % width;
                 if (idx == 0 || idx == 2 || idx == (width - 3) || idx == (width - 1)) {
@@ -180,11 +175,55 @@ uint8_t drawBorder(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t 
             }
         }
     }//End of for lines
+    drawMemory();
     return 1;
 }
 
 void drawEmpty(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
-    clrBuff();
+    clrBuff(width, height);
     setDisplayWindow(x, y, width, height);
+    drawMemory();
 }
-//void draw_img(img,x,y,w,h)
+
+void drawScore(uint16_t score, bool isDrawBorder) {
+    //Board parameters
+    const uint8_t xPos = 10;
+    const uint8_t yPos = 10;
+    const uint8_t digitWidth = 16;
+    const uint8_t digitHeight = 24;
+    const uint8_t width = 6 + (5 * digitWidth);
+    const uint8_t height = 6 + digitHeight;
+    const uint8_t color1 = white;
+    const uint8_t color2 = green;
+
+    //Preset board
+    if (isDrawBorder) {
+        drawEmpty(xPos, yPos, width, height);
+        drawBorder(xPos, yPos, width, height, color1, color2);
+    }
+    else {
+        drawEmpty(xPos + 3, yPos + 3, width - 6, height - 6);
+    }
+
+    //Extract digits from score
+    uint8_t digits[5];
+    digits[0] = (score / 10000);
+    digits[1] = (score / 1000) % 10;
+    digits[2] = (score / 100) % 10;
+    digits[3] = (score / 10) % 10;
+    digits[4] = score % 10;
+
+    uint8_t dig_xPos = xPos + 3;
+    uint8_t dig_yPos = yPos + 3;
+    //Draw digits
+    for (int i = 0; i < 5; i++) {
+        //xil_printf("%d, x=%d, y=%d\n", digits[i], dig_xPos + (i * digitWidth), dig_yPos);
+        drawBitmap(&numbers[digits[i]][0],
+            dig_xPos + (i * digitWidth),
+            dig_yPos,
+            digitWidth,
+            digitHeight,
+            white);
+    }
+
+}

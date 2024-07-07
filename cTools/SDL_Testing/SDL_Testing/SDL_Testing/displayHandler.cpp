@@ -85,7 +85,7 @@ void setDisplayWindow(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
     memoryBuffer[0] = (width << 8) + height;
 }
 
-void clrBuff() {
+void clrBuff(uint8_t width, uint8_t height) {
     memset(memoryBuffer, 0, sizeof(memoryBuffer));
 }
 

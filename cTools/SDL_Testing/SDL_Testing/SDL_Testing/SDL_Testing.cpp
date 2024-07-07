@@ -13,13 +13,14 @@ int main(int arc, char* argv[])
 
     displayInit();
 
-    clrBuff();
+    clrBuff(240,240);
 
     //draw8ColorBars();
     //drawBitmap(numbers[0], 0, 0, 16, 24, white);
     //drawBitmap(rotate__iconrotate_icon24_24, 0, 0, 24, 24, white);
     //drawGameBlock(10, 10, 0x24);
-    drawBorder(10, 10, 100, 100, 0xf, 0x2);
+    //drawBorder(10, 10, 100, 100, 0xf, 0x2);
+    drawScore(12345, true);
     drawMemory();
     //drawEmpty(0, 10, 24, 5);
     //drawMemory();
