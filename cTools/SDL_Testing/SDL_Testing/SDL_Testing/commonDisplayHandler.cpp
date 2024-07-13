@@ -108,6 +108,7 @@ uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors) {
             }
         }
     }
+    drawMemory();
     return 1;
 }
 
