@@ -10,6 +10,9 @@ using namespace std;
 #include "displayHandler.h"
 #include "drawObjects.h"
 
+void delLine(uint8_t lineNumber);
+void copyLineToLine(uint8_t copyLine, uint8_t toLine);
+
 const uint8_t fieldPosX = 41, fieldPosY = 41;
 const uint8_t borderWidth = 3;
 const uint8_t blockSize = 10;
@@ -24,7 +27,6 @@ void delay_ms(uint32_t timeout) {
 }
 
 char tetromino[7][17] = { // Tetronimos 4x4
-	//"XXXXXXXXXXXXXXXX",//I
 	"..I...I...I...I.",//I
 	"..T..TT...T.....",//T
 	".....OO..OO.....",//O
@@ -110,11 +112,6 @@ void gameTick() {
 	displayInit();
 	clrBuff(240,240);
 
-	// Create play field buffer
-	//for (int x = 0; x < fieldWidth; x++) // Board Boundary
-	//	for (int y = 0; y < fieldHeight; y++)
-	//		field[y * fieldWidth + x] = (x == 0 || x == fieldWidth - 1 || y == fieldHeight - 1) ? wallSymbol : 0;
-
 	// Game Logic
 	bool bKey[4];
 	int nCurrentPiece = 0;
@@ -176,33 +173,42 @@ void gameTick() {
 						if (tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)] != L'.')
 							field[(nCurrentY + py) * fieldWidth + (nCurrentX + px)] = nCurrentPiece + 1;
 
-				//// scan for full lines
-				//uint16_t linesFound = 0;
-				//uint16_t lines[fieldHeight] = { 0 };
-				//for (uint16_t line = fieldHeight-2; line > 0; line--) {
-				//	uint16_t start = line * fieldWidth + 1;
-				//	uint16_t end = start + blocksInLine;
+				// scan for full lines
+				uint16_t linesFound = 0;
+				uint16_t lines[fieldHeight] = { 0 };
+				for (uint16_t line = fieldHeight-1; line > 0; line--) {
+					uint16_t start = line* fieldWidth;
+					uint16_t end = start + fieldWidth - 1;
 
-				//	for (uint16_t idx = start; idx < end; idx++) {
-				//		if (field[idx] == 0) {
-				//			break;
-				//		}
-				//		else if (idx == end-1) {
-				//			lines[linesFound++] = line;
-				//		}
-				//	}
-				//}
+					for (uint16_t idx = start; idx < end; idx++) {
+						if (field[idx] == 0) {
+							break;
+						}
+						else if (idx == end-1) {
+							lines[linesFound++] = line;
+						}
+					}
+				}
+				
+				if (linesFound > 0) {
+					uint8_t idx = 0;
+					uint8_t copyToLineIdx = lines[idx];
+					uint8_t lastCopyLineIdx = lines[idx];
 
-				//if (linesFound > 0) {
-				//	//deleat Lines
-				//	uint8_t idx = 0;
-				//	for (uint16_t line = fieldHeight - 2; line > 0; line--) {
-				//		if (line == lines[idx]) {
-				//			//Deleat this line
+					//deleat Lines
+					for (int line = lines[idx]; line >= 0; line--) {
+						if (line == lines[idx]) {
+							delLine(line);
+							idx++;
+						}
+						else {
+							copyLineToLine(line, copyToLineIdx);
+							delLine(line);
+							copyToLineIdx--;
+						}
+					}
 
-				//		}
-				//	}
-				//}
+				}
 
 
 				nScore += 25;
@@ -279,4 +285,22 @@ void gameTick() {
 	//CloseHandle(hConsole);
 	std::cout << "Game Over!! Score:" << nScore << endl;
 	system("pause");
+}
+
+void delLine(uint8_t lineNumber) {
+	uint16_t start = lineNumber * fieldWidth;
+	uint16_t end = start + fieldWidth;
+	for (int i = start; i < end; i++) {
+		field[i] = 0;
+	}
+}
+
+void copyLineToLine(uint8_t copyLine, uint8_t toLine) {
+	uint16_t copyFromStart = copyLine * fieldWidth;
+	uint16_t copyFromEnd = copyFromStart + fieldWidth;
+	uint16_t copyToIdx = toLine * fieldWidth;
+
+	for (int i = copyFromStart; i < copyFromEnd; i++) {
+		field[copyToIdx++] = field[copyFromStart++];
+	}
 }
