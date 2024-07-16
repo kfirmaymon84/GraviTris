@@ -156,6 +156,10 @@ void drawMemory() {
         xIdx++;
     }
     SDL_RenderPresent(renderer);
+
+    if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE) {
+        exit;
+    }
 }
 
 void override_clearScreen() {

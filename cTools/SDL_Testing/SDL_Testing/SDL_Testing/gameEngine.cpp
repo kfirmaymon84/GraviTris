@@ -13,13 +13,20 @@ using namespace std;
 void delLine(uint8_t lineNumber);
 void copyLineToLine(uint8_t copyLine, uint8_t toLine);
 
-const uint8_t fieldPosX = 41, fieldPosY = 41;
-const uint8_t borderWidth = 3;
-const uint8_t blockSize = 10;
+#define GRID_POS_X 41
+#define GRID_POS_Y 41
+#define BOARD_BORDER_WIDTH 3
+#define BLOCK_SIZE 10
 
-const uint16_t nScreenWidth = 120, nScreenHeight = 30;
-const uint8_t fieldWidth = 16, fieldHeight = 16;
-uint8_t field[fieldWidth * fieldHeight] = { 0 }; 
+#define GRID_WIDTH 16
+#define GRID_HEIGHT 16
+
+uint8_t grid[GRID_WIDTH * GRID_HEIGHT] = { 0 }; 
+
+char lastTetremino[17] = {0};
+uint16_t lastPosX = 0;
+uint16_t lastPosY = 0;
+uint16_t lastRotetion = 0;
 
 void delay_ms(uint32_t timeout) {
 	timeout += std::clock();
@@ -35,6 +42,8 @@ char tetromino[7][17] = { // Tetronimos 4x4
 	".L...L...LL.....",//L
 	"..J...J..JJ....."//J
 };
+char emptyBlock[17] = { 0 };
+
 
 int Rotate(int px, int py, int r)
 {
@@ -74,14 +83,14 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
 			int pi = Rotate(px, py, nRotation);
 
 			// Get index into field
-			int fi = (nPosY + py) * fieldWidth + (nPosX + px);
+			int fi = (nPosY + py) * GRID_WIDTH + (nPosX + px);
 
 			// Test if touch left boarder
 			if (tetromino[nTetromino][pi] != L'.' && (px+ nPosX) < 0)
 				return false; // fail on first hit
 
 			// Test if touch right boarder
-			if (tetromino[nTetromino][pi] != L'.' && (px + nPosX) >= fieldWidth)
+			if (tetromino[nTetromino][pi] != L'.' && (px + nPosX) >= GRID_WIDTH)
 				return false; // fail on first hit
 
 			// Test if touch bottom boarder
@@ -92,12 +101,12 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
 			// not necessarily mean a fail, as the long vertical piece
 			// can have cells that lie outside the boundary, so we'll
 			// just ignore them
-			if (nPosX + px >= 0 && nPosX + px < fieldWidth)
+			if (nPosX + px >= 0 && nPosX + px < GRID_WIDTH)
 			{
-				if (nPosY + py >= 0 && nPosY + py < fieldHeight)
+				if (nPosY + py >= 0 && nPosY + py < GRID_HEIGHT)
 				{
 					// In Bounds so do collision check
-					if (tetromino[nTetromino][pi] != L'.' && field[fi] != 0)
+					if (tetromino[nTetromino][pi] != L'.' && grid[fi] != 0)
 						return false; // fail on first hit
 				}
 			}
@@ -116,7 +125,7 @@ void gameTick() {
 	bool bKey[4];
 	int nCurrentPiece = 0;
 	int nCurrentRotation = 0;
-	int nCurrentX = fieldWidth / 2;
+	int nCurrentX = GRID_WIDTH / 2;
 	int nCurrentY = 0;
 	int nSpeed = 20;
 	int nSpeedCount = 0;
@@ -125,6 +134,10 @@ void gameTick() {
 	int nPieceCount = 0;
 	int nScore = 0;
 	bool bGameOver = false;
+	
+	bool isGridHasChanged = true;
+	uint16_t posToDel[17] = { 0 };
+
 
 	while (!bGameOver) // Main Loop
 	{
@@ -147,7 +160,9 @@ void gameTick() {
 		// Rotate, but latch to stop wild spinning
 		if (bKey[3])
 		{
-			nCurrentRotation += (bRotateHold && DoesPieceFit(nCurrentPiece, nCurrentRotation + 1, nCurrentX, nCurrentY)) ? 1 : 0;
+			if ((bRotateHold && DoesPieceFit(nCurrentPiece, nCurrentRotation + 1, nCurrentX, nCurrentY))) {
+				nCurrentRotation += 1;
+			}
 			bRotateHold = false;
 		}
 		else
@@ -163,33 +178,38 @@ void gameTick() {
 				if (nSpeed >= 10) nSpeed--;
 
 			// Test if piece can be moved down
-			if (DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX, nCurrentY + 1))
+			if (DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX, nCurrentY + 1)) {
 				nCurrentY++; // It can, so do it!
+			}
 			else
 			{
 				// It can't! Lock the piece in place
 				for (int px = 0; px < 4; px++)
 					for (int py = 0; py < 4; py++)
-						if (tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)] != L'.')
-							field[(nCurrentY + py) * fieldWidth + (nCurrentX + px)] = nCurrentPiece + 1;
+						if (tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)] != L'.') {
+							grid[(nCurrentY + py) * GRID_WIDTH + (nCurrentX + px)] = nCurrentPiece + 1;
+						}
+				//Clear last tetremino from temp memory
+				memset(lastTetremino, 0, sizeof(tetromino));
+				isGridHasChanged = true;
 
 				// scan for full lines
 				uint16_t linesFound = 0;
-				uint16_t lines[fieldHeight] = { 0 };
-				for (uint16_t line = fieldHeight-1; line > 0; line--) {
-					uint16_t start = line* fieldWidth;
-					uint16_t end = start + fieldWidth - 1;
+				uint16_t lines[GRID_HEIGHT] = { 0 };
+				for (uint16_t line = GRID_HEIGHT - 1; line > 0; line--) {
+					uint16_t start = line * GRID_WIDTH;
+					uint16_t end = start + GRID_WIDTH - 1;
 
 					for (uint16_t idx = start; idx < end; idx++) {
-						if (field[idx] == 0) {
+						if (grid[idx] == 0) {
 							break;
 						}
-						else if (idx == end-1) {
+						else if (idx == end - 1) {
 							lines[linesFound++] = line;
 						}
 					}
 				}
-				
+
 				if (linesFound > 0) {
 					uint8_t idx = 0;
 					uint8_t copyToLineIdx = lines[idx];
@@ -207,7 +227,7 @@ void gameTick() {
 							copyToLineIdx--;
 						}
 					}
-
+					isGridHasChanged = true;
 				}
 
 
@@ -215,7 +235,7 @@ void gameTick() {
 				//if (!vLines.empty())	nScore += (1 << vLines.size()) * 100;
 
 				// Pick New Piece
-				nCurrentX = fieldWidth / 2;
+				nCurrentX = GRID_WIDTH / 2;
 				nCurrentY = 0;
 				nCurrentRotation = 0;
 				nCurrentPiece = rand() % 7;
@@ -226,61 +246,67 @@ void gameTick() {
 		}
 
 		// Display ======================
-		
-		// Draw Field
-		drawBorder(fieldPosX - borderWidth, fieldPosY - borderWidth, //x,y
-			fieldWidth*blockSize + (2*borderWidth), //Width
-			fieldHeight*blockSize + (2*borderWidth),//Height
-			white, green);// Colors
 
-		//Draw gameBlocks
-		uint16_t idx = 0;
-		for (int h = 0; h < fieldHeight; h++)
-			for (int w = 0; w < fieldWidth; w++) {
-				if (field[idx] != 0) {
-					//Draw field Block
-					drawGameBlock(fieldPosX + (w * blockSize), fieldPosY + (h * blockSize) , yellow);
+		// Grid Drawing Handler
+		if (isGridHasChanged) {
+
+			drawBorder(GRID_POS_X - BOARD_BORDER_WIDTH, GRID_POS_Y - BOARD_BORDER_WIDTH, //x,y
+				GRID_WIDTH * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH), //Width
+				GRID_HEIGHT * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH),//Height
+				white, green);// Colors	
+
+			for (int idx = 0; idx < (GRID_WIDTH * GRID_HEIGHT); idx++) {
+				if (grid[idx] != 0) {
+					uint8_t color = grid[idx] << 4 + grid[idx];
+					drawGameBlock(GRID_POS_X + ((idx % 16) * BLOCK_SIZE), //X
+						GRID_POS_Y + ((idx / 16) * BLOCK_SIZE),//Y
+						color);//Color
 				}
-				idx++;
 			}
-				
-		// Draw Current Piece
-		for (int px = 0; px < 4; px++) {
-			for (int py = 0; py < 4; py++) {
-				uint8_t block = tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)];
-				if (block != L'.')
-					drawGameBlock(fieldPosX + ((nCurrentX + px) * blockSize), //X
-						fieldPosY + ((nCurrentY + py) * blockSize),//Y
-						yellow);//Color
-			}
+			isGridHasChanged = false;
 		}
 
-				
-		// Draw Score
-		//swprintf_s(&screen[2 * nScreenWidth + nFieldWidth + 6], 16, L"SCORE: %8d", nScore);
 
-		//// Animate Line Completion
-		//if (!vLines.empty())
-		//{
-		//	// Display Frame (cheekily to draw lines)
-		//	WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
-		//	this_thread::sleep_for(400ms); // Delay a bit
+		//Floating game block handler
+		if (lastPosX != nCurrentX || lastPosY != nCurrentY || lastRotetion != nCurrentRotation) {
 
-		//	for (auto& v : vLines)
-		//		for (int px = 1; px < nFieldWidth - 1; px++)
-		//		{
-		//			for (int py = v; py > 0; py--)
-		//				pField[py * nFieldWidth + px] = pField[(py - 1) * nFieldWidth + px];
-		//			pField[px] = 0;
-		//		}
+			//Deleat last floating game block
+			uint16_t idx = 0;
+			for (int px = 0; px < 4; px++) {
+				for (int py = 0; py < 4; py++) {
+					uint8_t block = lastTetremino[idx++];
+					if (block != L'.' && block != 0) {
+						clearGameBlock(GRID_POS_X + ((lastPosX + px) * BLOCK_SIZE), //X
+							GRID_POS_Y + ((lastPosY + py) * BLOCK_SIZE));//Y
+					}
+				}
+			}
 
-		//	vLines.clear();
-		//}
+			//Draw the new Game block
+			idx = 0;
+			for (int px = 0; px < 4; px++) {
+				for (int py = 0; py < 4; py++) {
+					uint8_t block = tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)];
+					if (block != L'.') {
+						uint8_t color = (nCurrentPiece+1) << 4 + (nCurrentPiece+1);
+						drawGameBlock(GRID_POS_X + ((nCurrentX + px) * BLOCK_SIZE), //X
+							GRID_POS_Y + ((nCurrentY + py) * BLOCK_SIZE),//Y
+							color);//Color
 
-		// Display Frame
-		//WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
+						//posToDel[idx++] = ((py * 16) + nCurrentX);
+					}
+					lastTetremino[idx++] = block;
+				}
+			}
+
+			// Save last cordinet
+			lastPosX = nCurrentX;
+			lastPosY = nCurrentY;
+			lastRotetion = nCurrentRotation;
+		}
+
 	}
-
+	
 	// Oh Dear
 	//CloseHandle(hConsole);
 	std::cout << "Game Over!! Score:" << nScore << endl;
@@ -288,19 +314,19 @@ void gameTick() {
 }
 
 void delLine(uint8_t lineNumber) {
-	uint16_t start = lineNumber * fieldWidth;
-	uint16_t end = start + fieldWidth;
+	uint16_t start = lineNumber * GRID_WIDTH;
+	uint16_t end = start + GRID_WIDTH;
 	for (int i = start; i < end; i++) {
-		field[i] = 0;
+		grid[i] = 0;
 	}
 }
 
 void copyLineToLine(uint8_t copyLine, uint8_t toLine) {
-	uint16_t copyFromStart = copyLine * fieldWidth;
-	uint16_t copyFromEnd = copyFromStart + fieldWidth;
-	uint16_t copyToIdx = toLine * fieldWidth;
+	uint16_t copyFromStart = copyLine * GRID_WIDTH;
+	uint16_t copyFromEnd = copyFromStart + GRID_WIDTH;
+	uint16_t copyToIdx = toLine * GRID_WIDTH;
 
 	for (int i = copyFromStart; i < copyFromEnd; i++) {
-		field[copyToIdx++] = field[copyFromStart++];
+		grid[copyToIdx++] = grid[copyFromStart++];
 	}
 }

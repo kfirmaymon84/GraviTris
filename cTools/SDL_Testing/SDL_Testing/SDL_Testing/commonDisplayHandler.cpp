@@ -112,6 +112,12 @@ uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors) {
     return 1;
 }
 
+void clearGameBlock(uint8_t x, uint8_t y) {
+    clrBuff(10, 10);
+    setDisplayWindow(x, y, 10, 10);
+    drawMemory();
+}
+
 uint8_t drawBorder(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color1, uint8_t color2) {
     //if width or height less then 6, box is too small.
     if (width < 6 || height < 6)
