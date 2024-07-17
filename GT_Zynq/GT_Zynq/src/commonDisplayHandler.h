@@ -44,11 +44,20 @@ enum colors
 #define AQUA    0x57ff
 #define WHITE   0xffff
 
+typedef struct PowerUps_S 
+{
+    bool isRotate;
+    bool isSpinOut;
+    bool isShake;
+}PowerUps_S;
+
 void draw8ColorBars();
-uint8_t drawBitmap(uint8_t* img, uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color);
+uint8_t drawBitmap(uint8_t *img, uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color);
 uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors);
+void clearGameBlock(uint8_t x, uint8_t y);
 uint8_t drawBorder(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color1, uint8_t color2);
 void drawEmpty(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
+void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder);
 
-void drawScore( uint16_t score, bool isDrawBorder);
+void drawScore(uint16_t score, bool isDrawBorder);
 #endif //_COMMON_DISPLAY_HANDLER_H_

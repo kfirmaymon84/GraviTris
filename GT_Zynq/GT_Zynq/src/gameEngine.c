@@ -1,9 +1,8 @@
 #include "gameEngine.h"
 #include <stdint.h>
 #include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
 
+#include "sleep.h"
 #include "commonDisplayHandler.h"
 #include "displayHandler.h"
 #include "drawObjects.h"
@@ -22,12 +21,16 @@ void copyLineToLine(uint8_t copyLine, uint8_t toLine);
 #define GRID_WIDTH 16
 #define GRID_HEIGHT 16
 
-uint8_t grid[GRID_WIDTH * GRID_HEIGHT] = { 0 };
+uint8_t grid[GRID_WIDTH * GRID_HEIGHT] = { 0 }; 
 
-char lastTetremino[17] = { 0 };
+char lastTetremino[17] = {0};
 uint16_t lastPosX = 0;
 uint16_t lastPosY = 0;
 uint16_t lastRotetion = 0;
+
+void delay_ms(uint32_t timeout) {
+	usleep(timeout*1000);
+}
 
 char tetromino[7][17] = { // Tetronimos 4x4
 	"..I...I...I...I.",//I
@@ -82,7 +85,7 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
 			int fi = (nPosY + py) * GRID_WIDTH + (nPosX + px);
 
 			// Test if touch left boarder
-			if (tetromino[nTetromino][pi] != L'.' && (px + nPosX) < 0)
+			if (tetromino[nTetromino][pi] != L'.' && (px+ nPosX) < 0)
 				return false; // fail on first hit
 
 			// Test if touch right boarder
@@ -115,7 +118,7 @@ void gameTick() {
 
 	// Create Screen Buffer
 	displayInit();
-	clrBuff(240, 240);
+	clrBuff(240,240);
 
 	// Game Logic
 	int nCurrentPiece = 0;
@@ -129,7 +132,7 @@ void gameTick() {
 	int nPieceCount = 0;
 	int nScore = 0;
 	bool bGameOver = false;
-
+	
 	bool isGridHasChanged = true;
 	uint16_t posToDel[17] = { 0 };
 
@@ -287,7 +290,7 @@ void gameTick() {
 				for (int py = 0; py < 4; py++) {
 					uint8_t block = tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)];
 					if (block != L'.') {
-						uint8_t color = ((nCurrentPiece + 1) << 4) + (nCurrentPiece + 1);
+						uint8_t color = ((nCurrentPiece+1) << 4) + (nCurrentPiece+1);
 						drawGameBlock(GRID_POS_X + ((nCurrentX + px) * BLOCK_SIZE), //X
 							GRID_POS_Y + ((nCurrentY + py) * BLOCK_SIZE),//Y
 							color);//Color
@@ -307,11 +310,11 @@ void gameTick() {
 		// Draw Score
 		drawScore(nScore, false);
 	}
-
+	
 	// Oh Dear
-	while (1) {
+    while(1){
 
-	}
+    }
 	//CloseHandle(hConsole);
 	// std::cout << "Game Over!! Score:" << nScore << endl;
 	// system("pause");

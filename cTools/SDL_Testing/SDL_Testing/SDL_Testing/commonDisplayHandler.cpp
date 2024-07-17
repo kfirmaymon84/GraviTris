@@ -194,8 +194,8 @@ void drawEmpty(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
 
 void drawScore(uint16_t score, bool isDrawBorder) {
     //Board parameters
-    const uint8_t xPos = 10;
-    const uint8_t yPos = 10;
+    const uint8_t xPos = 5;
+    const uint8_t yPos = 5;
     const uint8_t digitWidth = 16;
     const uint8_t digitHeight = 24;
     const uint8_t width = 6 + (5 * digitWidth);

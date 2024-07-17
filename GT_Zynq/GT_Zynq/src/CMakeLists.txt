@@ -129,13 +129,29 @@ collect(PROJECT_LIB_DEPS xilstandalone;xiltimer)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 collect(PROJECT_LIB_DEPS xil)
 collect(PROJECT_LIB_DEPS gcc)
 collect(PROJECT_LIB_DEPS c)
 
 collect (PROJECT_LIB_SOURCES commonDisplayHandler.c)
 collect (PROJECT_LIB_SOURCES displayHandler.c)
+collect (PROJECT_LIB_SOURCES gameEngine.c)
 collect (PROJECT_LIB_SOURCES gpioHandler.c)
+collect (PROJECT_LIB_SOURCES ioHandler.c)
 collect (PROJECT_LIB_SOURCES main.c)
 collect (PROJECT_LIB_SOURCES platform.c)
 collector_list (_sources PROJECT_LIB_SOURCES)

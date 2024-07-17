@@ -44,12 +44,12 @@ enum colors
 #define AQUA    0x57ff
 #define WHITE   0xffff
 
-struct PowerUps_S
+typedef struct PowerUps_S
 {
     bool isRotate;
     bool isSpinOut;
     bool isShake;
-};
+}PowerUps_S;
 
 void draw8ColorBars();
 uint8_t drawBitmap(uint8_t *img, uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color);

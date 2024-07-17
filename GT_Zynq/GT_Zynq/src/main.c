@@ -32,6 +32,7 @@
 #include "displayHandler.h"
 #include "commonDisplayHandler.h"
 #include "drawObjects.h"
+#include "gameEngine.h"
 
 void initGPIO();
 void initBram();
@@ -99,7 +100,8 @@ int main()
                     usleep(30000);
                 }   
                 
-
+            case 'g':
+                gameTick();
 			default:
 			break;
 		}
