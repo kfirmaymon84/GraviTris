@@ -2,10 +2,10 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
--- Date        : Wed Jul  3 14:26:50 2024
+-- Date        : Thu Jul 18 09:15:03 2024
 -- Host        : CP-230194 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/FPGA/FPGA_FUN/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_IO_Mapper_0_0/design_1_IO_Mapper_0_0_sim_netlist.vhdl
+--               c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_IO_Mapper_0_0/design_1_IO_Mapper_0_0_sim_netlist.vhdl
 -- Design      : design_1_IO_Mapper_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,7 +17,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_IO_Mapper_0_0_IO_Mapper is
   port (
-    portB : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    portB : out STD_LOGIC_VECTOR ( 5 downto 0 );
     nEnable : out STD_LOGIC;
     tftDrv_data : out STD_LOGIC_VECTOR ( 7 downto 0 );
     tftDrv_override : out STD_LOGIC;
@@ -27,7 +27,7 @@ entity design_1_IO_Mapper_0_0_IO_Mapper is
     dbg_LED0 : out STD_LOGIC;
     dbg_LED1 : out STD_LOGIC;
     dbg_LED2 : out STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    D : in STD_LOGIC_VECTOR ( 5 downto 0 );
     clk : in STD_LOGIC;
     portA : in STD_LOGIC_VECTOR ( 15 downto 0 )
   );
@@ -83,6 +83,38 @@ nEnable_reg: unisim.vcomponents.FDRE
       CE => '1',
       D => D(1),
       Q => portB(1),
+      R => '0'
+    );
+\portB_reg[2]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => D(2),
+      Q => portB(2),
+      R => '0'
+    );
+\portB_reg[3]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => D(3),
+      Q => portB(3),
+      R => '0'
+    );
+\portB_reg[4]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => D(4),
+      Q => portB(4),
+      R => '0'
+    );
+\portB_reg[5]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => D(5),
+      Q => portB(5),
       R => '0'
     );
 tftDrv_DC_in_reg: unisim.vcomponents.FDRE
@@ -201,7 +233,11 @@ entity design_1_IO_Mapper_0_0 is
     dbg_LED0 : out STD_LOGIC;
     dbg_LED1 : out STD_LOGIC;
     dbg_LED2 : out STD_LOGIC;
-    dbg_SW : in STD_LOGIC
+    dbg_SW : in STD_LOGIC;
+    btnLeft : in STD_LOGIC;
+    btnRight : in STD_LOGIC;
+    btnDown : in STD_LOGIC;
+    btnSpin : in STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_IO_Mapper_0_0 : entity is true;
@@ -217,7 +253,7 @@ end design_1_IO_Mapper_0_0;
 
 architecture STRUCTURE of design_1_IO_Mapper_0_0 is
   signal \<const0>\ : STD_LOGIC;
-  signal \^portb\ : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal \^portb\ : STD_LOGIC_VECTOR ( 5 downto 0 );
   attribute x_interface_info : string;
   attribute x_interface_info of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute x_interface_parameter : string;
@@ -249,17 +285,17 @@ begin
   portB(8) <= \<const0>\;
   portB(7) <= \<const0>\;
   portB(6) <= \<const0>\;
-  portB(5) <= \<const0>\;
-  portB(4) <= \<const0>\;
-  portB(3) <= \<const0>\;
-  portB(2) <= \<const0>\;
-  portB(1 downto 0) <= \^portb\(1 downto 0);
+  portB(5 downto 0) <= \^portb\(5 downto 0);
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
     );
 U0: entity work.design_1_IO_Mapper_0_0_IO_Mapper
      port map (
+      D(5) => btnSpin,
+      D(4) => btnDown,
+      D(3) => btnRight,
+      D(2) => btnLeft,
       D(1) => dbg_SW,
       D(0) => tftDrv_ready,
       clk => clk,
@@ -268,7 +304,7 @@ U0: entity work.design_1_IO_Mapper_0_0_IO_Mapper
       dbg_LED2 => dbg_LED2,
       nEnable => nEnable,
       portA(15 downto 0) => portA(15 downto 0),
-      portB(1 downto 0) => \^portb\(1 downto 0),
+      portB(5 downto 0) => \^portb\(5 downto 0),
       tftDrv_DC_in => tftDrv_DC_in,
       tftDrv_WRX_in => tftDrv_WRX_in,
       tftDrv_data(7 downto 0) => tftDrv_data(7 downto 0),

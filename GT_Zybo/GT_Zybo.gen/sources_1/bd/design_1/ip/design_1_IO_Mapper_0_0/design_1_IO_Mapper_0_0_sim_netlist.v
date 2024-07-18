@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Wed Jul  3 14:26:50 2024
+// Date        : Thu Jul 18 09:15:03 2024
 // Host        : CP-230194 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/FPGA/FPGA_FUN/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_IO_Mapper_0_0/design_1_IO_Mapper_0_0_sim_netlist.v
+//               c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_IO_Mapper_0_0/design_1_IO_Mapper_0_0_sim_netlist.v
 // Design      : design_1_IO_Mapper_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -30,7 +30,11 @@ module design_1_IO_Mapper_0_0
     dbg_LED0,
     dbg_LED1,
     dbg_LED2,
-    dbg_SW);
+    dbg_SW,
+    btnLeft,
+    btnRight,
+    btnDown,
+    btnSpin);
   (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input clk;
   input [31:0]portA;
   output [31:0]portB;
@@ -45,8 +49,16 @@ module design_1_IO_Mapper_0_0
   output dbg_LED1;
   output dbg_LED2;
   input dbg_SW;
+  input btnLeft;
+  input btnRight;
+  input btnDown;
+  input btnSpin;
 
   wire \<const0> ;
+  wire btnDown;
+  wire btnLeft;
+  wire btnRight;
+  wire btnSpin;
   wire clk;
   wire dbg_LED0;
   wire dbg_LED1;
@@ -54,7 +66,7 @@ module design_1_IO_Mapper_0_0
   wire dbg_SW;
   wire nEnable;
   wire [31:0]portA;
-  wire [1:0]\^portB ;
+  wire [5:0]\^portB ;
   wire tftDrv_DC_in;
   wire tftDrv_WRX_in;
   wire [7:0]tftDrv_data;
@@ -88,15 +100,11 @@ module design_1_IO_Mapper_0_0
   assign portB[8] = \<const0> ;
   assign portB[7] = \<const0> ;
   assign portB[6] = \<const0> ;
-  assign portB[5] = \<const0> ;
-  assign portB[4] = \<const0> ;
-  assign portB[3] = \<const0> ;
-  assign portB[2] = \<const0> ;
-  assign portB[1:0] = \^portB [1:0];
+  assign portB[5:0] = \^portB [5:0];
   GND GND
        (.G(\<const0> ));
   design_1_IO_Mapper_0_0_IO_Mapper U0
-       (.D({dbg_SW,tftDrv_ready}),
+       (.D({btnSpin,btnDown,btnRight,btnLeft,dbg_SW,tftDrv_ready}),
         .clk(clk),
         .dbg_LED0(dbg_LED0),
         .dbg_LED1(dbg_LED1),
@@ -126,7 +134,7 @@ module design_1_IO_Mapper_0_0_IO_Mapper
     D,
     clk,
     portA);
-  output [1:0]portB;
+  output [5:0]portB;
   output nEnable;
   output [7:0]tftDrv_data;
   output tftDrv_override;
@@ -136,18 +144,18 @@ module design_1_IO_Mapper_0_0_IO_Mapper
   output dbg_LED0;
   output dbg_LED1;
   output dbg_LED2;
-  input [1:0]D;
+  input [5:0]D;
   input clk;
   input [15:0]portA;
 
-  wire [1:0]D;
+  wire [5:0]D;
   wire clk;
   wire dbg_LED0;
   wire dbg_LED1;
   wire dbg_LED2;
   wire nEnable;
   wire [15:0]portA;
-  wire [1:0]portB;
+  wire [5:0]portB;
   wire tftDrv_DC_in;
   wire tftDrv_WRX_in;
   wire [7:0]tftDrv_data;
@@ -189,6 +197,30 @@ module design_1_IO_Mapper_0_0_IO_Mapper
         .CE(1'b1),
         .D(D[1]),
         .Q(portB[1]),
+        .R(1'b0));
+  FDRE \portB_reg[2] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(D[2]),
+        .Q(portB[2]),
+        .R(1'b0));
+  FDRE \portB_reg[3] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(D[3]),
+        .Q(portB[3]),
+        .R(1'b0));
+  FDRE \portB_reg[4] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(D[4]),
+        .Q(portB[4]),
+        .R(1'b0));
+  FDRE \portB_reg[5] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(D[5]),
+        .Q(portB[5]),
         .R(1'b0));
   FDRE tftDrv_DC_in_reg
        (.C(clk),

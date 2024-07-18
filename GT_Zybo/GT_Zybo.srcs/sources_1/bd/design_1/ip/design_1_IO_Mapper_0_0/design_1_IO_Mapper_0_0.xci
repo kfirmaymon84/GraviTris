@@ -50,7 +50,11 @@
         "dbg_LED0": [ { "direction": "out" } ],
         "dbg_LED1": [ { "direction": "out" } ],
         "dbg_LED2": [ { "direction": "out" } ],
-        "dbg_SW": [ { "direction": "in" } ]
+        "dbg_SW": [ { "direction": "in" } ],
+        "btnLeft": [ { "direction": "in" } ],
+        "btnRight": [ { "direction": "in" } ],
+        "btnDown": [ { "direction": "in" } ],
+        "btnSpin": [ { "direction": "in" } ]
       },
       "interfaces": {
         "clk": {

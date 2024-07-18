@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/FPGA/FPGA_FUN/GT_Zybo/GT_Zybo.runs/design_1_IO_Mapper_0_0_synth_1'
+HD_PWD='C:/GraviTris/GT_Zybo/GT_Zybo.runs/design_1_IO_Mapper_0_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

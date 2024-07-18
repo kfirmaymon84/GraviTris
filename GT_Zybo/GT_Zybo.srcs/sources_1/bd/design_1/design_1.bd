@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xC5665BA39357A3D7",
+      "boundary_crc": "0xCBA8216C9FA6BACB",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../GT_Zybo.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -215,6 +215,18 @@
       },
       "dbg_SW": {
         "direction": "I"
+      },
+      "btnDown": {
+        "direction": "I"
+      },
+      "btnLeft": {
+        "direction": "I"
+      },
+      "btnRight": {
+        "direction": "I"
+      },
+      "btnSpin": {
+        "direction": "I"
       }
     },
     "components": {
@@ -372,10 +384,16 @@
           "PCW_EN_4K_TIMER": {
             "value": "0"
           },
+          "PCW_EN_EMIO_I2C0": {
+            "value": "0"
+          },
           "PCW_EN_ENET0": {
             "value": "1"
           },
           "PCW_EN_GPIO": {
+            "value": "1"
+          },
+          "PCW_EN_I2C0": {
             "value": "1"
           },
           "PCW_EN_QSPI": {
@@ -405,8 +423,26 @@
           "PCW_GPIO_PERIPHERAL_ENABLE": {
             "value": "0"
           },
+          "PCW_I2C0_GRP_INT_ENABLE": {
+            "value": "0"
+          },
+          "PCW_I2C0_I2C0_IO": {
+            "value": "MIO 10 .. 11"
+          },
+          "PCW_I2C0_PERIPHERAL_ENABLE": {
+            "value": "1"
+          },
+          "PCW_I2C0_RESET_ENABLE": {
+            "value": "0"
+          },
+          "PCW_I2C_PERIPHERAL_FREQMHZ": {
+            "value": "111.111115"
+          },
           "PCW_I2C_RESET_ENABLE": {
             "value": "1"
+          },
+          "PCW_I2C_RESET_SELECT": {
+            "value": "Share reset pin"
           },
           "PCW_IRQ_F2P_MODE": {
             "value": "DIRECT"
@@ -878,12 +914,12 @@
           },
           "PCW_MIO_TREE_PERIPHERALS": {
             "value": [
-              "GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet",
+              "GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#I2C 0#I2C 0#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet",
               "0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#USB Reset#SD 0#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0"
             ]
           },
           "PCW_MIO_TREE_SIGNALS": {
-            "value": "gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#reset#cd#tx#rx#gpio[50]#gpio[51]#mdc#mdio"
+            "value": "gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#scl#sda#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#reset#cd#tx#rx#gpio[50]#gpio[51]#mdc#mdio"
           },
           "PCW_OVERRIDE_BASIC_CLOCK": {
             "value": "0"
@@ -1602,6 +1638,18 @@
           },
           "dbg_SW": {
             "direction": "I"
+          },
+          "btnLeft": {
+            "direction": "I"
+          },
+          "btnRight": {
+            "direction": "I"
+          },
+          "btnDown": {
+            "direction": "I"
+          },
+          "btnSpin": {
+            "direction": "I"
           }
         }
       },
@@ -1855,6 +1903,30 @@
           "IO_Mapper_0/portA"
         ]
       },
+      "btnDown_0_1": {
+        "ports": [
+          "btnDown",
+          "IO_Mapper_0/btnDown"
+        ]
+      },
+      "btnLeft_0_1": {
+        "ports": [
+          "btnLeft",
+          "IO_Mapper_0/btnLeft"
+        ]
+      },
+      "btnRight_0_1": {
+        "ports": [
+          "btnRight",
+          "IO_Mapper_0/btnRight"
+        ]
+      },
+      "btnSpin_0_1": {
+        "ports": [
+          "btnSpin",
+          "IO_Mapper_0/btnSpin"
+        ]
+      },
       "dbg_SW_0_1": {
         "ports": [
           "dbg_SW",
@@ -1869,9 +1941,9 @@
           "axi_bram_ctrl_0/s_axi_aclk",
           "rst_ps7_0_50M/slowest_sync_clk",
           "axi_gpio_0/s_axi_aclk",
-          "IO_Mapper_0/clk",
           "TTF_Driver_0/clk",
-          "axi_bram_ctrl_0_bram/clkb"
+          "axi_bram_ctrl_0_bram/clkb",
+          "IO_Mapper_0/clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -1925,7 +1997,7 @@
       "file": {
         "name": "..\\..\\..\\..\\..\\GT_Zynq\\GT_Zynq\\build\\GT_Zynq.elf",
         "type": "ELF",
-        "checksum": "839195193",
+        "checksum": "2367991079",
         "IsVisible": "1",
         "ScopedToRef": "design_1",
         "ScopedToCell": [

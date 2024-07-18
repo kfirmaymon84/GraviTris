@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
---Date        : Wed Jul  3 14:42:43 2024
+--Date        : Thu Jul 18 09:15:59 2024
 --Host        : CP-230194 running 64-bit major release  (build 9200)
 --Command     : generate_target design_1_wrapper.bd
 --Design      : design_1_wrapper
@@ -37,6 +37,10 @@ entity design_1_wrapper is
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     WRX_out : out STD_LOGIC;
+    btnDown : in STD_LOGIC;
+    btnLeft : in STD_LOGIC;
+    btnRight : in STD_LOGIC;
+    btnSpin : in STD_LOGIC;
     dbg_LED0 : out STD_LOGIC;
     dbg_LED1 : out STD_LOGIC;
     dbg_LED2 : out STD_LOGIC;
@@ -75,7 +79,11 @@ architecture STRUCTURE of design_1_wrapper is
     dbg_LED0 : out STD_LOGIC;
     dbg_LED1 : out STD_LOGIC;
     dbg_LED2 : out STD_LOGIC;
-    dbg_SW : in STD_LOGIC
+    dbg_SW : in STD_LOGIC;
+    btnDown : in STD_LOGIC;
+    btnLeft : in STD_LOGIC;
+    btnRight : in STD_LOGIC;
+    btnSpin : in STD_LOGIC
   );
   end component design_1;
 begin
@@ -104,6 +112,10 @@ design_1_i: component design_1
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
       FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
       WRX_out => WRX_out,
+      btnDown => btnDown,
+      btnLeft => btnLeft,
+      btnRight => btnRight,
+      btnSpin => btnSpin,
       dbg_LED0 => dbg_LED0,
       dbg_LED1 => dbg_LED1,
       dbg_LED2 => dbg_LED2,

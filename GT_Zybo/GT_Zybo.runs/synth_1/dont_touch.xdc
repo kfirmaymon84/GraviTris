@@ -36,4 +36,4 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xl
 # IP: bd/design_1/ip/design_1_xlconstant_0_1/design_1_xlconstant_0_1.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlconstant_0_1 || ORIG_REF_NAME==design_1_xlconstant_0_1} -quiet] -quiet
 
-# XDC: c:/FPGA/FPGA_FUN/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/design_1_ooc.xdc
+# XDC: c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/design_1_ooc.xdc

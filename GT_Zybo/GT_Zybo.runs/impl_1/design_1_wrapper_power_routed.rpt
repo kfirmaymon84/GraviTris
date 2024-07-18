@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Wed Jul  3 14:47:16 2024
+| Date             : Thu Jul 18 09:22:04 2024
 | Host             : CP-230194 running 64-bit major release  (build 9200)
 | Command          : report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
 | Design           : design_1_wrapper
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.607        |
+| Total On-Chip Power (W)  | 1.608        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 1.465        |
@@ -53,20 +53,20 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.021 |        3 |       --- |             --- |
-| Slice Logic              |     0.014 |    11779 |       --- |             --- |
-|   LUT as Logic           |     0.012 |     4003 |     53200 |            7.52 |
-|   Register               |    <0.001 |     5109 |    106400 |            4.80 |
+| Slice Logic              |     0.014 |    11783 |       --- |             --- |
+|   LUT as Logic           |     0.012 |     4007 |     53200 |            7.53 |
+|   Register               |    <0.001 |     5113 |    106400 |            4.81 |
 |   LUT as Distributed RAM |    <0.001 |      308 |     17400 |            1.77 |
 |   LUT as Shift Register  |    <0.001 |      326 |     17400 |            1.87 |
 |   CARRY4                 |    <0.001 |       51 |     13300 |            0.38 |
 |   F7/F8 Muxes            |    <0.001 |        9 |     53200 |            0.02 |
 |   Others                 |     0.000 |      548 |       --- |             --- |
-| Signals                  |     0.017 |     7795 |       --- |             --- |
+| Signals                  |     0.017 |     7811 |       --- |             --- |
 | Block RAM                |     0.011 |        8 |       140 |            5.71 |
-| I/O                      |     0.001 |       14 |       125 |           11.20 |
+| I/O                      |     0.001 |       18 |       125 |           14.40 |
 | PS7                      |     1.400 |        1 |       --- |             --- |
 | Static Power             |     0.143 |          |           |                 |
-| Total                    |     1.607 |          |           |                 |
+| Total                    |     1.608 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.077 |       0.062 |      0.015 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.077 |       0.063 |      0.015 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.015 |       0.000 |      0.015 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -153,7 +153,7 @@ Table of Contents
 | Name                     | Power (W) |
 +--------------------------+-----------+
 | design_1_wrapper         |     1.465 |
-|   design_1_i             |     1.463 |
+|   design_1_i             |     1.464 |
 |     TTF_Driver_0         |     0.001 |
 |       U0                 |     0.001 |
 |     axi_bram_ctrl_0      |     0.002 |
@@ -164,8 +164,8 @@ Table of Contents
 |       U0                 |     0.002 |
 |     axi_smc              |     0.046 |
 |       inst               |     0.046 |
-|     processing_system7_0 |     1.400 |
-|       inst               |     1.400 |
+|     processing_system7_0 |     1.401 |
+|       inst               |     1.401 |
 +--------------------------+-----------+
 
 

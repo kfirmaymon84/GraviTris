@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jul  3 14:42:49 2024" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jul 18 09:16:05 2024" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo-z7-20:part0:1.1" DEVICE="7z020" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -74,7 +74,7 @@
         <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_RAS_n"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="IO" NAME="DDR_reset_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="processing_system7_0_DDR_DRSTB">
+    <PORT DIR="IO" NAME="DDR_reset_n" SIGIS="rst" SIGNAME="processing_system7_0_DDR_DRSTB">
       <CONNECTIONS>
         <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_DRSTB"/>
       </CONNECTIONS>
@@ -117,6 +117,26 @@
     <PORT DIR="O" NAME="WRX_out" SIGIS="undef" SIGNAME="TTF_Driver_0_WRX_out">
       <CONNECTIONS>
         <CONNECTION INSTANCE="TTF_Driver_0" PORT="WRX_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="btnDown" SIGIS="undef" SIGNAME="External_Ports_btnDown">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="IO_Mapper_0" PORT="btnDown"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="btnLeft" SIGIS="undef" SIGNAME="External_Ports_btnLeft">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="IO_Mapper_0" PORT="btnLeft"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="btnRight" SIGIS="undef" SIGNAME="External_Ports_btnRight">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="IO_Mapper_0" PORT="btnRight"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="btnSpin" SIGIS="undef" SIGNAME="External_Ports_btnSpin">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="IO_Mapper_0" PORT="btnSpin"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="dbg_LED0" SIGIS="undef" SIGNAME="IO_Mapper_0_dbg_LED0">
@@ -201,6 +221,26 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
+        <PORT DIR="I" NAME="btnDown" SIGIS="undef" SIGNAME="External_Ports_btnDown">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="btnDown"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="btnLeft" SIGIS="undef" SIGNAME="External_Ports_btnLeft">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="btnLeft"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="btnRight" SIGIS="undef" SIGNAME="External_Ports_btnRight">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="btnRight"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="btnSpin" SIGIS="undef" SIGNAME="External_Ports_btnSpin">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="btnSpin"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
@@ -2497,7 +2537,7 @@
         <PARAMETER NAME="PCW_EN_ENET0" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_ENET1" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_GPIO" VALUE="1"/>
-        <PARAMETER NAME="PCW_EN_I2C0" VALUE="0"/>
+        <PARAMETER NAME="PCW_EN_I2C0" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_I2C1" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_MODEM_UART0" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_MODEM_UART1" VALUE="0"/>
@@ -2572,8 +2612,8 @@
         <PARAMETER NAME="PCW_I2C0_GRP_INT_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C0_GRP_INT_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_I2C0_HIGHADDR" VALUE="0xE0004FFF"/>
-        <PARAMETER NAME="PCW_I2C0_I2C0_IO" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_I2C0_PERIPHERAL_ENABLE" VALUE="0"/>
+        <PARAMETER NAME="PCW_I2C0_I2C0_IO" VALUE="MIO 10 .. 11"/>
+        <PARAMETER NAME="PCW_I2C0_PERIPHERAL_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_I2C0_RESET_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C0_RESET_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_I2C1_BASEADDR" VALUE="0xE0005000"/>
@@ -2584,10 +2624,10 @@
         <PARAMETER NAME="PCW_I2C1_PERIPHERAL_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C1_RESET_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C1_RESET_IO" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_I2C_PERIPHERAL_FREQMHZ" VALUE="25"/>
+        <PARAMETER NAME="PCW_I2C_PERIPHERAL_FREQMHZ" VALUE="111.111115"/>
         <PARAMETER NAME="PCW_I2C_RESET_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_I2C_RESET_POLARITY" VALUE="Active Low"/>
-        <PARAMETER NAME="PCW_I2C_RESET_SELECT" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_I2C_RESET_SELECT" VALUE="Share reset pin"/>
         <PARAMETER NAME="PCW_IMPORT_BOARD_PRESET" VALUE="None"/>
         <PARAMETER NAME="PCW_INCLUDE_ACP_TRANS_CHECK" VALUE="0"/>
         <PARAMETER NAME="PCW_INCLUDE_TRACE_BUFFER" VALUE="0"/>
@@ -2812,8 +2852,8 @@
         <PARAMETER NAME="PCW_MIO_9_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_9_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_PRIMITIVE" VALUE="54"/>
-        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#USB Reset#SD 0#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0"/>
-        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#reset#cd#tx#rx#gpio[50]#gpio[51]#mdc#mdio"/>
+        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#I2C 0#I2C 0#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#USB Reset#SD 0#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0"/>
+        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#scl#sda#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#reset#cd#tx#rx#gpio[50]#gpio[51]#mdc#mdio"/>
         <PARAMETER NAME="PCW_M_AXI_GP0_ENABLE_STATIC_REMAP" VALUE="0"/>
         <PARAMETER NAME="PCW_M_AXI_GP0_FREQMHZ" VALUE="100"/>
         <PARAMETER NAME="PCW_M_AXI_GP0_ID_WIDTH" VALUE="12"/>
@@ -3305,9 +3345,9 @@
             <CONNECTION INSTANCE="axi_bram_ctrl_0" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aclk"/>
-            <CONNECTION INSTANCE="IO_Mapper_0" PORT="clk"/>
             <CONNECTION INSTANCE="TTF_Driver_0" PORT="clk"/>
             <CONNECTION INSTANCE="axi_bram_ctrl_0_bram" PORT="clkb"/>
+            <CONNECTION INSTANCE="IO_Mapper_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="FCLK_RESET0_N" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">

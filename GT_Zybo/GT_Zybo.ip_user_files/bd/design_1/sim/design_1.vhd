@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
---Date        : Wed Jul  3 14:42:43 2024
+--Date        : Thu Jul 18 09:14:04 2024
 --Host        : CP-230194 running 64-bit major release  (build 9200)
 --Command     : generate_target design_1.bd
 --Design      : design_1
@@ -333,7 +333,11 @@ architecture STRUCTURE of design_1 is
     dbg_LED0 : out STD_LOGIC;
     dbg_LED1 : out STD_LOGIC;
     dbg_LED2 : out STD_LOGIC;
-    dbg_SW : in STD_LOGIC
+    dbg_SW : in STD_LOGIC;
+    btnLeft : in STD_LOGIC;
+    btnRight : in STD_LOGIC;
+    btnDown : in STD_LOGIC;
+    btnSpin : in STD_LOGIC
   );
   end component design_1_IO_Mapper_0_0;
   component design_1_TTF_Driver_0_0 is
@@ -556,6 +560,10 @@ begin
   tftData_out(7 downto 0) <= TTF_Driver_0_tftData_out(7 downto 0);
 IO_Mapper_0: component design_1_IO_Mapper_0_0
      port map (
+      btnDown => '0',
+      btnLeft => '0',
+      btnRight => '0',
+      btnSpin => '0',
       clk => processing_system7_0_FCLK_CLK0,
       dbg_LED0 => IO_Mapper_0_dbg_LED0,
       dbg_LED1 => IO_Mapper_0_dbg_LED1,

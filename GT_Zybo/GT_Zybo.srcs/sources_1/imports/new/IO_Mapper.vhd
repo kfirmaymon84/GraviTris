@@ -25,7 +25,11 @@ entity IO_Mapper is
     dbg_LED1 : out std_logic;
     dbg_LED2 : out std_logic;
 
-    dbg_SW : in std_logic
+    dbg_SW      : in std_logic;
+    btnLeft     : in std_logic;
+    btnRight    : in std_logic;
+    btnDown     : in std_logic;
+    btnSpin     : in std_logic
   );
 end IO_Mapper;
 
@@ -50,7 +54,12 @@ begin
       --portB (inputs)
       portB(0) <= tftDrv_ready;
       portB(1) <= dbg_SW;
-
+      
+      portB(2) <= btnLeft;
+      portB(3) <= btnRight; 
+      portB(4) <= btnDown;
+      portB(5) <= btnSpin;
+        
     end if;--if rising_edge(clk)
   end process;
 end Behavioral;

@@ -68,7 +68,11 @@ ENTITY design_1_IO_Mapper_0_0 IS
     dbg_LED0 : OUT STD_LOGIC;
     dbg_LED1 : OUT STD_LOGIC;
     dbg_LED2 : OUT STD_LOGIC;
-    dbg_SW : IN STD_LOGIC
+    dbg_SW : IN STD_LOGIC;
+    btnLeft : IN STD_LOGIC;
+    btnRight : IN STD_LOGIC;
+    btnDown : IN STD_LOGIC;
+    btnSpin : IN STD_LOGIC
   );
 END design_1_IO_Mapper_0_0;
 
@@ -90,7 +94,11 @@ ARCHITECTURE design_1_IO_Mapper_0_0_arch OF design_1_IO_Mapper_0_0 IS
       dbg_LED0 : OUT STD_LOGIC;
       dbg_LED1 : OUT STD_LOGIC;
       dbg_LED2 : OUT STD_LOGIC;
-      dbg_SW : IN STD_LOGIC
+      dbg_SW : IN STD_LOGIC;
+      btnLeft : IN STD_LOGIC;
+      btnRight : IN STD_LOGIC;
+      btnDown : IN STD_LOGIC;
+      btnSpin : IN STD_LOGIC
     );
   END COMPONENT IO_Mapper;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -121,6 +129,10 @@ BEGIN
       dbg_LED0 => dbg_LED0,
       dbg_LED1 => dbg_LED1,
       dbg_LED2 => dbg_LED2,
-      dbg_SW => dbg_SW
+      dbg_SW => dbg_SW,
+      btnLeft => btnLeft,
+      btnRight => btnRight,
+      btnDown => btnDown,
+      btnSpin => btnSpin
     );
 END design_1_IO_Mapper_0_0_arch;
