@@ -47,6 +47,8 @@ int main()
 
     xil_printf("Start\n");
 
+    gpio_pinSet(&gpio, TFT_DRIVER_OUT_PIN_CH,TFT_DRIVER_START);
+	gpio_pinClear(&gpio, TFT_DRIVER_OUT_PIN_CH,TFT_DRIVER_START);
     while(1){
 		char c;
 		print("Enter cmd: \n");
