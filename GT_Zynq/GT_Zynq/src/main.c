@@ -17,6 +17,7 @@
  *   ps7_uart    115200 (configured by bootrom/bsp)
  */
 
+#include <sleep.h>
 #include <stdio.h>
 #include "platform.h"
 #include "xil_printf.h"
@@ -31,6 +32,7 @@
 #include "displayHandler.h"
 #include "commonDisplayHandler.h"
 #include "drawObjects.h"
+#include "gameEngine.h"
 
 void initGPIO();
 void initBram();
@@ -55,7 +57,7 @@ int main()
 
 		// c = XUartLite_RecvByte(XPAR_AXI_UARTLITE_0_BASEADDR);
         c = XUartPs_RecvByte(XPAR_XUARTPS_0_BASEADDR);
-		// xil_printf("Got-> %c at %d\n",c, millisCounter);
+		xil_printf("Got-> %c\n",c);
 
 		switch (c) {
 			case '0':
@@ -93,8 +95,15 @@ int main()
                 drawBorder(10,10,100,100,white,green);
                 break;
             case '9':
-                drawScore(12345, true);
-
+                drawScore(10000, true);
+                usleep(3000000);
+                for(int i =0;i<100;i++){
+                    drawScore(10000+i, false);
+                    usleep(30000);
+                }   
+                
+            case 'g':
+                gameTick();
 			default:
 			break;
 		}

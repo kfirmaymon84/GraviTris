@@ -5,6 +5,7 @@
 #include "xparameters.h"
 #include "stdbool.h"
 #include <stdint.h>
+#include <xil_printf.h>
 #include "xbram.h"
 
 extern XGpio gpio;
@@ -354,14 +355,25 @@ void writePixel(uint16_t pixelNumber, uint8_t color) {
  *  @return Void.
  */
 void drawMemory(){
+    #define WAIT_FOR_GPIO_US 10
     //Wait for READY
     uint32_t read = 0;
     
-    while(read != 1){
-         read = gpio_portRead(&gpio, PORTB_CH) & (0x1 << TFT_DRIVER_READY);
+    //Wait for ready to be HIGH
+    while((gpio_portRead(&gpio, PORTB_CH) & (0x1 << TFT_DRIVER_READY)) != 1){
+         usleep(WAIT_FOR_GPIO_US);
     }
     gpio_pinSet(&gpio, TFT_DRIVER_OUT_PIN_CH,TFT_DRIVER_START);
 	gpio_pinClear(&gpio, TFT_DRIVER_OUT_PIN_CH,TFT_DRIVER_START);
+    //Wait for ready to be LOW
+    while((gpio_portRead(&gpio, PORTB_CH) & (0x1 << TFT_DRIVER_READY)) != 0){
+         usleep(WAIT_FOR_GPIO_US);
+    }
+
+    //Wait for ready to be HIGH
+    while((gpio_portRead(&gpio, PORTB_CH) & (0x1 << TFT_DRIVER_READY)) != 1){
+         usleep(WAIT_FOR_GPIO_US);
+    }
 }
 
 /** @brief Clear display screen.

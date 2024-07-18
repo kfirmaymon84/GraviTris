@@ -108,7 +108,14 @@ uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors) {
             }
         }
     }
+    drawMemory();
     return 1;
+}
+
+void clearGameBlock(uint8_t x, uint8_t y) {
+    clrBuff(10, 10);
+    setDisplayWindow(x, y, 10, 10);
+    drawMemory();
 }
 
 uint8_t drawBorder(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t color1, uint8_t color2) {
@@ -187,8 +194,8 @@ void drawEmpty(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
 
 void drawScore(uint16_t score, bool isDrawBorder) {
     //Board parameters
-    const uint8_t xPos = 10;
-    const uint8_t yPos = 10;
+    const uint8_t xPos = 5;
+    const uint8_t yPos = 5;
     const uint8_t digitWidth = 16;
     const uint8_t digitHeight = 24;
     const uint8_t width = 6 + (5 * digitWidth);
@@ -201,12 +208,10 @@ void drawScore(uint16_t score, bool isDrawBorder) {
         drawEmpty(xPos, yPos, width, height);
         drawBorder(xPos, yPos, width, height, color1, color2);
     }
-    else {
-        drawEmpty(xPos + 3, yPos + 3, width - 6, height - 6);
-    }
 
     //Extract digits from score
     uint8_t digits[5];
+    static uint8_t last_digits[5];
     digits[0] = (score / 10000);
     digits[1] = (score / 1000) % 10;
     digits[2] = (score / 100) % 10;
@@ -218,12 +223,63 @@ void drawScore(uint16_t score, bool isDrawBorder) {
     //Draw digits
     for (int i = 0; i < 5; i++) {
         //xil_printf("%d, x=%d, y=%d\n", digits[i], dig_xPos + (i * digitWidth), dig_yPos);
-        drawBitmap(&numbers[digits[i]][0],
-            dig_xPos + (i * digitWidth),
-            dig_yPos,
-            digitWidth,
-            digitHeight,
+        if (digits[i] != last_digits[i] || isDrawBorder == true) {
+            //Stor new digit to last digits buffer
+            last_digits[i] = digits[i];
+            //Clear digit space
+            drawEmpty(dig_xPos + (i * digitWidth), dig_yPos, digitWidth, digitHeight);
+            //Draw new digit
+            drawBitmap(&numbers[digits[i]][0],
+                dig_xPos + (i * digitWidth),
+                dig_yPos,
+                digitWidth,
+                digitHeight,
+                white);
+        }
+    }
+}
+
+void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
+    //Board parameters
+    const uint8_t xPos = 10;
+    const uint8_t yPos = 50;
+    const uint8_t iconWidth = 24;
+    const uint8_t iconHeight = 24;
+    const uint8_t width = 6 + iconWidth;
+    const uint8_t height = 6 + (3 * iconHeight);
+    const uint8_t color1 = white;
+    const uint8_t color2 = blue;
+
+    //Preset board
+    if (isDrawBorder) {
+        drawEmpty(xPos, yPos, width, height);
+        drawBorder(xPos, yPos, width, height, color1, color2);
+    }
+
+    if (powerUps->isRotate) {
+        drawBitmap(rotate__iconrotate_icon24_24,
+            xPos + 3,
+            yPos + 3,
+            iconWidth,
+            iconHeight,
             white);
     }
 
+    if (powerUps->isSpinOut) {
+        drawBitmap(spinOut24_24spinOut24_24,
+            xPos + 3,
+            yPos + 3 + iconHeight,
+            iconWidth,
+            iconHeight,
+            white);
+    }
+
+    if (powerUps->isShake) {
+        drawBitmap(Shake_icon24_24,
+            xPos + 3,
+            yPos + 3 + iconHeight + iconHeight,
+            iconWidth,
+            iconHeight,
+            white);
+    }
 }

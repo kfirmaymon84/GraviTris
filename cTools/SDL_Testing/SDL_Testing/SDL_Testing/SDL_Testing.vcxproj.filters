@@ -24,6 +24,12 @@
     <ClCompile Include="displayHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ioHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="displayHandler.h">
@@ -35,5 +41,14 @@
     <ClInclude Include="drawObjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gameEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ioHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="temp.txt" />
   </ItemGroup>
 </Project>

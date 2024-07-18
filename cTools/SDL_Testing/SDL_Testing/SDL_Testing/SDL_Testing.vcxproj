@@ -145,12 +145,19 @@
   <ItemGroup>
     <ClCompile Include="commonDisplayHandler.cpp" />
     <ClCompile Include="displayHandler.cpp" />
+    <ClCompile Include="gameEngine.cpp" />
+    <ClCompile Include="ioHandler.cpp" />
     <ClCompile Include="SDL_Testing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="commonDisplayHandler.h" />
     <ClInclude Include="displayHandler.h" />
     <ClInclude Include="drawObjects.h" />
+    <ClInclude Include="gameEngine.h" />
+    <ClInclude Include="ioHandler.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="temp.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
