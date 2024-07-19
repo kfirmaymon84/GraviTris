@@ -847,7 +847,7 @@
             "value": "LVCMOS 1.8V"
           },
           "PCW_MIO_50_PULLUP": {
-            "value": "enabled"
+            "value": "disabled"
           },
           "PCW_MIO_50_SLEW": {
             "value": "slow"
@@ -856,7 +856,7 @@
             "value": "LVCMOS 1.8V"
           },
           "PCW_MIO_51_PULLUP": {
-            "value": "enabled"
+            "value": "disabled"
           },
           "PCW_MIO_51_SLEW": {
             "value": "slow"
