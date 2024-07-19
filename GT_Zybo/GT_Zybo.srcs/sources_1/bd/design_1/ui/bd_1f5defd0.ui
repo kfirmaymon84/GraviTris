@@ -1,57 +1,57 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.514523",
-   "Default View_TopLeft":"-284,4",
+   "Default View_TopLeft":"-264,4",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 6 -x 1780 -y 60 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 6 -x 1780 -y 80 -defaultsOSRD
-preplace port port-id_DC_out -pg 1 -lvl 6 -x 1780 -y 690 -defaultsOSRD
-preplace port port-id_WRX_out -pg 1 -lvl 6 -x 1780 -y 710 -defaultsOSRD
-preplace port port-id_dbg_LED0 -pg 1 -lvl 6 -x 1780 -y 870 -defaultsOSRD
-preplace port port-id_dbg_LED1 -pg 1 -lvl 6 -x 1780 -y 890 -defaultsOSRD
-preplace port port-id_dbg_LED2 -pg 1 -lvl 6 -x 1780 -y 910 -defaultsOSRD
+preplace port DDR -pg 1 -lvl 6 -x 1810 -y 60 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 6 -x 1810 -y 80 -defaultsOSRD
+preplace port port-id_DC_out -pg 1 -lvl 6 -x 1810 -y 690 -defaultsOSRD
+preplace port port-id_WRX_out -pg 1 -lvl 6 -x 1810 -y 710 -defaultsOSRD
+preplace port port-id_dbg_LED0 -pg 1 -lvl 6 -x 1810 -y 870 -defaultsOSRD
+preplace port port-id_dbg_LED1 -pg 1 -lvl 6 -x 1810 -y 890 -defaultsOSRD
+preplace port port-id_dbg_LED2 -pg 1 -lvl 6 -x 1810 -y 910 -defaultsOSRD
 preplace port port-id_dbg_SW -pg 1 -lvl 0 -x 0 -y 810 -defaultsOSRD
 preplace port port-id_btnDown -pg 1 -lvl 0 -x 0 -y 870 -defaultsOSRD
 preplace port port-id_btnLeft -pg 1 -lvl 0 -x 0 -y 830 -defaultsOSRD
 preplace port port-id_btnRight -pg 1 -lvl 0 -x 0 -y 850 -defaultsOSRD
 preplace port port-id_btnSpin -pg 1 -lvl 0 -x 0 -y 890 -defaultsOSRD
-preplace portBus tftData_out -pg 1 -lvl 6 -x 1780 -y 730 -defaultsOSRD
+preplace portBus tftData_out -pg 1 -lvl 6 -x 1810 -y 730 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 1 -x 230 -y 110 -defaultsOSRD
 preplace inst axi_bram_ctrl_0 -pg 1 -lvl 3 -x 900 -y 180 -defaultsOSRD
-preplace inst axi_bram_ctrl_0_bram -pg 1 -lvl 4 -x 1220 -y 250 -defaultsOSRD
+preplace inst axi_bram_ctrl_0_bram -pg 1 -lvl 4 -x 1240 -y 250 -defaultsOSRD
 preplace inst axi_smc -pg 1 -lvl 2 -x 600 -y 170 -defaultsOSRD
 preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 230 -y 330 -defaultsOSRD
 preplace inst axi_gpio_0 -pg 1 -lvl 3 -x 900 -y 550 -defaultsOSRD
-preplace inst IO_Mapper_0 -pg 1 -lvl 4 -x 1220 -y 820 -defaultsOSRD
-preplace inst TTF_Driver_0 -pg 1 -lvl 5 -x 1580 -y 720 -defaultsOSRD
+preplace inst IO_Mapper_0 -pg 1 -lvl 4 -x 1240 -y 820 -defaultsOSRD
+preplace inst TTF_Driver_0 -pg 1 -lvl 5 -x 1610 -y 720 -defaultsOSRD
 preplace inst xlconstant_0 -pg 1 -lvl 3 -x 900 -y 300 -defaultsOSRD
 preplace inst xlconstant_1 -pg 1 -lvl 3 -x 900 -y 420 -defaultsOSRD
 preplace netloc IO_Mapper_0_dbg_LED0 1 4 2 NJ 870 NJ
 preplace netloc IO_Mapper_0_dbg_LED1 1 4 2 NJ 890 NJ
 preplace netloc IO_Mapper_0_dbg_LED2 1 4 2 NJ 910 NJ
-preplace netloc IO_Mapper_0_nEnable 1 4 1 1370 670n
-preplace netloc IO_Mapper_0_portB 1 3 2 NJ 580 1360
-preplace netloc IO_Mapper_0_tftDrv_DC_in 1 4 1 1410 730n
-preplace netloc IO_Mapper_0_tftDrv_WRX_in 1 4 1 1420 750n
+preplace netloc IO_Mapper_0_nEnable 1 4 1 1390 670n
+preplace netloc IO_Mapper_0_portB 1 3 2 NJ 580 1380
+preplace netloc IO_Mapper_0_tftDrv_DC_in 1 4 1 1430 730n
+preplace netloc IO_Mapper_0_tftDrv_WRX_in 1 4 1 1440 750n
 preplace netloc IO_Mapper_0_tftDrv_data 1 4 1 N 770
-preplace netloc IO_Mapper_0_tftDrv_override 1 4 1 1390 710n
-preplace netloc IO_Mapper_0_tftDrv_start 1 4 1 1380 690n
+preplace netloc IO_Mapper_0_tftDrv_override 1 4 1 1410 710n
+preplace netloc IO_Mapper_0_tftDrv_start 1 4 1 1400 690n
 preplace netloc TTF_Driver_0_DC_out 1 5 1 NJ 690
 preplace netloc TTF_Driver_0_WRX_out 1 5 1 NJ 710
-preplace netloc TTF_Driver_0_bramAddress 1 3 3 1080 380 NJ 380 1760
-preplace netloc TTF_Driver_0_bramEN 1 3 3 1070 390 NJ 390 1750
-preplace netloc TTF_Driver_0_ready 1 3 3 1080 590 NJ 590 1740
+preplace netloc TTF_Driver_0_bramAddress 1 3 3 1100 380 NJ 380 1790
+preplace netloc TTF_Driver_0_bramEN 1 3 3 1090 390 NJ 390 1780
+preplace netloc TTF_Driver_0_ready 1 3 3 1100 590 NJ 590 1770
 preplace netloc TTF_Driver_0_tftData_out 1 5 1 NJ 730
-preplace netloc axi_bram_ctrl_0_bram_doutb 1 3 2 1060 570 1400J
+preplace netloc axi_bram_ctrl_0_bram_doutb 1 3 2 1080 570 1420J
 preplace netloc axi_gpio_0_gpio_io_o 1 3 1 1040 540n
 preplace netloc btnDown_0_1 1 0 4 NJ 870 NJ 870 NJ 870 NJ
 preplace netloc btnLeft_0_1 1 0 4 NJ 830 NJ 830 NJ 830 NJ
 preplace netloc btnRight_0_1 1 0 4 NJ 850 NJ 850 NJ 850 NJ
 preplace netloc btnSpin_0_1 1 0 4 NJ 890 NJ 890 NJ 890 NJ
 preplace netloc dbg_SW_0_1 1 0 4 NJ 810 NJ 810 NJ 810 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 5 20 220 440 70 760 100 1050 650 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 5 20 220 440 70 760 100 1070 650 NJ
 preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 230 430
 preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 460 90 740
 preplace netloc xlconstant_0_dout 1 3 1 NJ 300
@@ -62,8 +62,8 @@ preplace netloc axi_smc_M01_AXI 1 2 1 750 180n
 preplace netloc processing_system7_0_DDR 1 1 5 NJ 60 NJ 60 NJ 60 NJ 60 NJ
 preplace netloc processing_system7_0_FIXED_IO 1 1 5 NJ 80 NJ 80 NJ 80 NJ 80 NJ
 preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 450 120n
-levelinfo -pg 1 0 230 600 900 1220 1580 1780
-pagesize -pg 1 -db -bbox -sgen -110 0 1930 970
+levelinfo -pg 1 0 230 600 900 1240 1610 1810
+pagesize -pg 1 -db -bbox -sgen -110 0 1980 970
 "
 }
 {

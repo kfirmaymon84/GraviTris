@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Jul 19 19:13:03 2024
-# Process ID: 31496
+# Start of session at: Fri Jul 19 19:33:31 2024
+# Process ID: 16780
 # Current directory: C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1
 # Command line: vivado.exe -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file: C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/design_1_wrapper.vds
@@ -19,10 +19,10 @@
 # Host memory       :34029 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39129 MB
-# Available Virtual :22045 MB
+# Available Virtual :21640 MB
 #-----------------------------------------------------------
 source design_1_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 583.777 ; gain = 203.527
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 583.531 ; gain = 202.629
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.1/data/ip'.
@@ -40,29 +40,29 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 6092
+INFO: [Synth 8-7075] Helper process launched with PID 2716
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1508.434 ; gain = 447.871
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1509.582 ; gain = 450.426
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'design_1_wrapper' [C:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:52]
 INFO: [Synth 8-3491] module 'design_1' declared at 'c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:15' bound to instance 'design_1_i' of component 'design_1' [C:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:90]
 INFO: [Synth 8-638] synthesizing module 'design_1' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:56]
-INFO: [Synth 8-3491] module 'design_1_IO_Mapper_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_IO_Mapper_0_0_stub.vhdl:6' bound to instance 'IO_Mapper_0' of component 'design_1_IO_Mapper_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:573]
-INFO: [Synth 8-638] synthesizing module 'design_1_IO_Mapper_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_IO_Mapper_0_0_stub.vhdl:30]
-INFO: [Synth 8-3491] module 'design_1_TTF_Driver_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_TTF_Driver_0_0_stub.vhdl:6' bound to instance 'TTF_Driver_0' of component 'design_1_TTF_Driver_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:594]
-INFO: [Synth 8-638] synthesizing module 'design_1_TTF_Driver_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_TTF_Driver_0_0_stub.vhdl:26]
-INFO: [Synth 8-3491] module 'design_1_axi_bram_ctrl_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_bram_ctrl_0_0_stub.vhdl:6' bound to instance 'axi_bram_ctrl_0' of component 'design_1_axi_bram_ctrl_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:611]
-INFO: [Synth 8-638] synthesizing module 'design_1_axi_bram_ctrl_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_bram_ctrl_0_0_stub.vhdl:52]
-INFO: [Synth 8-3491] module 'design_1_axi_bram_ctrl_0_bram_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_bram_ctrl_0_bram_0_stub.vhdl:6' bound to instance 'axi_bram_ctrl_0_bram' of component 'design_1_axi_bram_ctrl_0_bram_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:654]
-INFO: [Synth 8-638] synthesizing module 'design_1_axi_bram_ctrl_0_bram_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_bram_ctrl_0_bram_0_stub.vhdl:28]
-INFO: [Synth 8-3491] module 'design_1_axi_gpio_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_gpio_0_0_stub.vhdl:6' bound to instance 'axi_gpio_0' of component 'design_1_axi_gpio_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:674]
-INFO: [Synth 8-638] synthesizing module 'design_1_axi_gpio_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_gpio_0_0_stub.vhdl:33]
-INFO: [Synth 8-3491] module 'design_1_axi_smc_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_smc_0_stub.vhdl:6' bound to instance 'axi_smc' of component 'design_1_axi_smc_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:698]
-INFO: [Synth 8-638] synthesizing module 'design_1_axi_smc_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_axi_smc_0_stub.vhdl:104]
-INFO: [Synth 8-3491] module 'design_1_processing_system7_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_processing_system7_0_0_stub.vhdl:6' bound to instance 'processing_system7_0' of component 'design_1_processing_system7_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:793]
-INFO: [Synth 8-638] synthesizing module 'design_1_processing_system7_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_processing_system7_0_0_stub.vhdl:77]
-INFO: [Synth 8-3491] module 'design_1_rst_ps7_0_50M_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_rst_ps7_0_50M_0_stub.vhdl:6' bound to instance 'rst_ps7_0_50M' of component 'design_1_rst_ps7_0_50M_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:861]
-INFO: [Synth 8-638] synthesizing module 'design_1_rst_ps7_0_50M_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-31496-CP-230194/realtime/design_1_rst_ps7_0_50M_0_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'design_1_IO_Mapper_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_IO_Mapper_0_0_stub.vhdl:6' bound to instance 'IO_Mapper_0' of component 'design_1_IO_Mapper_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:573]
+INFO: [Synth 8-638] synthesizing module 'design_1_IO_Mapper_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_IO_Mapper_0_0_stub.vhdl:30]
+INFO: [Synth 8-3491] module 'design_1_TTF_Driver_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_TTF_Driver_0_0_stub.vhdl:6' bound to instance 'TTF_Driver_0' of component 'design_1_TTF_Driver_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:594]
+INFO: [Synth 8-638] synthesizing module 'design_1_TTF_Driver_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_TTF_Driver_0_0_stub.vhdl:26]
+INFO: [Synth 8-3491] module 'design_1_axi_bram_ctrl_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_bram_ctrl_0_0_stub.vhdl:6' bound to instance 'axi_bram_ctrl_0' of component 'design_1_axi_bram_ctrl_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:611]
+INFO: [Synth 8-638] synthesizing module 'design_1_axi_bram_ctrl_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_bram_ctrl_0_0_stub.vhdl:52]
+INFO: [Synth 8-3491] module 'design_1_axi_bram_ctrl_0_bram_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_bram_ctrl_0_bram_0_stub.vhdl:6' bound to instance 'axi_bram_ctrl_0_bram' of component 'design_1_axi_bram_ctrl_0_bram_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:654]
+INFO: [Synth 8-638] synthesizing module 'design_1_axi_bram_ctrl_0_bram_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_bram_ctrl_0_bram_0_stub.vhdl:28]
+INFO: [Synth 8-3491] module 'design_1_axi_gpio_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_gpio_0_0_stub.vhdl:6' bound to instance 'axi_gpio_0' of component 'design_1_axi_gpio_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:674]
+INFO: [Synth 8-638] synthesizing module 'design_1_axi_gpio_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_gpio_0_0_stub.vhdl:33]
+INFO: [Synth 8-3491] module 'design_1_axi_smc_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_smc_0_stub.vhdl:6' bound to instance 'axi_smc' of component 'design_1_axi_smc_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:698]
+INFO: [Synth 8-638] synthesizing module 'design_1_axi_smc_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_axi_smc_0_stub.vhdl:104]
+INFO: [Synth 8-3491] module 'design_1_processing_system7_0_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_processing_system7_0_0_stub.vhdl:6' bound to instance 'processing_system7_0' of component 'design_1_processing_system7_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:793]
+INFO: [Synth 8-638] synthesizing module 'design_1_processing_system7_0_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_processing_system7_0_0_stub.vhdl:77]
+INFO: [Synth 8-3491] module 'design_1_rst_ps7_0_50M_0' declared at 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_rst_ps7_0_50M_0_stub.vhdl:6' bound to instance 'rst_ps7_0_50M' of component 'design_1_rst_ps7_0_50M_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:861]
+INFO: [Synth 8-638] synthesizing module 'design_1_rst_ps7_0_50M_0' [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/.Xil/Vivado-16780-CP-230194/realtime/design_1_rst_ps7_0_50M_0_stub.vhdl:22]
 INFO: [Synth 8-3491] module 'design_1_xlconstant_0_0' declared at 'c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_xlconstant_0_0/synth/design_1_xlconstant_0_0.v:53' bound to instance 'xlconstant_0' of component 'design_1_xlconstant_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:874]
 INFO: [Synth 8-6157] synthesizing module 'design_1_xlconstant_0_0' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_xlconstant_0_0/synth/design_1_xlconstant_0_0.v:53]
 INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_9_xlconstant' [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ipshared/e2d2/hdl/xlconstant_v1_1_vl_rfs.v:68]
@@ -76,18 +76,18 @@ INFO: [Synth 8-6155] done synthesizing module 'design_1_xlconstant_0_1' (0#1) [c
 INFO: [Synth 8-256] done synthesizing module 'design_1' (0#1) [c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/synth/design_1.vhd:56]
 INFO: [Synth 8-256] done synthesizing module 'design_1_wrapper' (0#1) [C:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:52]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 1628.922 ; gain = 569.766
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 1628.922 ; gain = 569.766
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 1628.922 ; gain = 569.766
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1627.844 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1628.922 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -116,23 +116,23 @@ Parsing XDC File [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1627.844 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1641.285 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1627.844 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1641.285 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'design_1_i/axi_bram_ctrl_0_bram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -409,10 +409,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/TTF_Driver_0. (constra
 Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/xlconstant_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/xlconstant_1. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -435,25 +435,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -471,37 +471,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -537,16 +537,16 @@ Report Cell Usage:
 |10    |OBUF                                 |    13|
 +------+-------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1627.844 ; gain = 567.281
-Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1627.844 ; gain = 567.281
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1641.336 ; gain = 569.766
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1641.336 ; gain = 582.180
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1627.844 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1641.336 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1627.844 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1641.336 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -554,8 +554,8 @@ Synth Design complete | Checksum: 25b41155
 INFO: [Common 17-83] Releasing license: Synthesis
 55 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1627.844 ; gain = 998.977
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1627.844 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1641.336 ; gain = 1013.332
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1641.336 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GraviTris/GT_Zybo/GT_Zybo.runs/synth_1/design_1_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Jul 19 19:13:34 2024...
+INFO: [Common 17-206] Exiting Vivado at Fri Jul 19 19:34:02 2024...
