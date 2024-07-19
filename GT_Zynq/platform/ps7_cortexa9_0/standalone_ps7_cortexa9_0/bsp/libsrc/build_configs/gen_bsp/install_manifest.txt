@@ -27,6 +27,9 @@ C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/inclu
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpiops_hw.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpio_i.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpio_l.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps_hw.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps_xfer.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiltimer.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xil_assert.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xil_cache.h
@@ -106,6 +109,9 @@ C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/inclu
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpiops_hw.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpio_i.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpio_l.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps_hw.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps_xfer.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiltimer.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xil_assert.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xil_cache.h
@@ -185,6 +191,9 @@ C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/inclu
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpiops_hw.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpio_i.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xgpio_l.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps_hw.h
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiicps_xfer.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xiltimer.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xil_assert.h
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/include/../include/xil_cache.h

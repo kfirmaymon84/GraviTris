@@ -30,6 +30,9 @@ C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops_hw.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_i.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_l.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_hw.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_xfer.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs_config.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilrsa.h
@@ -115,6 +118,9 @@ C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops_hw.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_i.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_l.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_hw.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_xfer.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs_config.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilrsa.h
@@ -200,6 +206,9 @@ C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops_hw.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_i.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_l.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_hw.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_xfer.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs_config.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilrsa.h
@@ -285,6 +294,9 @@ C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpiops_hw.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_i.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xgpio_l.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_hw.h
+C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xiicps_xfer.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilffs_config.h
 C:/GraviTris/GT_Zynq/platform/zynq_fsbl/zynq_fsbl_bsp/include/../include/xilrsa.h

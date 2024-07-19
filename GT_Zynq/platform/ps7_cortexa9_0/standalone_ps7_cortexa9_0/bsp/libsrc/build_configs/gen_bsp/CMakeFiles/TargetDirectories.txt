@@ -66,6 +66,13 @@ C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsr
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/gpiops/src/CMakeFiles/install.dir
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/gpiops/src/CMakeFiles/install/local.dir
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/gpiops/src/CMakeFiles/install/strip.dir
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/iicps/src/CMakeFiles/iicps.dir
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/iicps/src/CMakeFiles/edit_cache.dir
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/iicps/src/CMakeFiles/rebuild_cache.dir
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/iicps/src/CMakeFiles/list_install_components.dir
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/iicps/src/CMakeFiles/install.dir
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/iicps/src/CMakeFiles/install/local.dir
+C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/iicps/src/CMakeFiles/install/strip.dir
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/qspips/src/CMakeFiles/qspips.dir
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/qspips/src/CMakeFiles/edit_cache.dir
 C:/GraviTris/GT_Zynq/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/build_configs/gen_bsp/libsrc/qspips/src/CMakeFiles/rebuild_cache.dir
