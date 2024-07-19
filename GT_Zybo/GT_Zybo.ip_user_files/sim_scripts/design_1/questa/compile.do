@@ -77,7 +77,6 @@ vlog -work blk_mem_gen_v8_4_8  -incr -mfcu  "+incdir+../../../../GT_Zybo.gen/sou
 
 vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/ec67/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/b28c/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/f0b6/hdl/verilog" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/c783/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2024.1/data/xilinx_vip/include" \
 "../../../bd/design_1/ip/design_1_axi_bram_ctrl_0_bram_0/sim/design_1_axi_bram_ctrl_0_bram_0.v" \
-"../../../bd/design_1/ip/design_1_axi_smc_0/bd_0/sim/bd_afc3.v" \
 
 vlog -work xlconstant_v1_1_9  -incr -mfcu  "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/ec67/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/b28c/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/f0b6/hdl/verilog" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/c783/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2024.1/data/xilinx_vip/include" \
 "../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/e2d2/hdl/xlconstant_v1_1_vl_rfs.v" \
@@ -162,6 +161,9 @@ vlog -work xil_defaultlib  -incr -mfcu  -sv -L axi_vip_v1_1_17 -L smartconnect_v
 "../../../bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_27/sim/bd_afc3_m01wn_0.sv" \
 "../../../bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_28/sim/bd_afc3_m01bn_0.sv" \
 "../../../bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_29/sim/bd_afc3_m01e_0.sv" \
+
+vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/ec67/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/b28c/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/f0b6/hdl/verilog" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/c783/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2024.1/data/xilinx_vip/include" \
+"../../../bd/design_1/ip/design_1_axi_smc_0/bd_0/sim/bd_afc3.v" \
 
 vlog -work axi_register_slice_v2_1_31  -incr -mfcu  "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/ec67/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/b28c/hdl" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/f0b6/hdl/verilog" "+incdir+../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/c783/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2024.1/data/xilinx_vip/include" \
 "../../../../GT_Zybo.gen/sources_1/bd/design_1/ipshared/92b2/hdl/axi_register_slice_v2_1_vl_rfs.v" \

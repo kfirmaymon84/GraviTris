@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
---Date        : Thu Jul 18 09:14:04 2024
+--Date        : Fri Jul 19 20:35:37 2024
 --Host        : CP-230194 running 64-bit major release  (build 9200)
 --Command     : generate_target design_1.bd
 --Design      : design_1
@@ -37,6 +37,10 @@ entity design_1 is
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     WRX_out : out STD_LOGIC;
+    btnDown : in STD_LOGIC;
+    btnLeft : in STD_LOGIC;
+    btnRight : in STD_LOGIC;
+    btnSpin : in STD_LOGIC;
     dbg_LED0 : out STD_LOGIC;
     dbg_LED1 : out STD_LOGIC;
     dbg_LED2 : out STD_LOGIC;
@@ -441,6 +445,10 @@ architecture STRUCTURE of design_1 is
   signal axi_smc_M01_AXI_WREADY : STD_LOGIC;
   signal axi_smc_M01_AXI_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_smc_M01_AXI_WVALID : STD_LOGIC;
+  signal btnDown_0_1 : STD_LOGIC;
+  signal btnLeft_0_1 : STD_LOGIC;
+  signal btnRight_0_1 : STD_LOGIC;
+  signal btnSpin_0_1 : STD_LOGIC;
   signal dbg_SW_0_1 : STD_LOGIC;
   signal processing_system7_0_DDR_ADDR : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal processing_system7_0_DDR_BA : STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -553,6 +561,10 @@ architecture STRUCTURE of design_1 is
 begin
   DC_out <= TTF_Driver_0_DC_out;
   WRX_out <= TTF_Driver_0_WRX_out;
+  btnDown_0_1 <= btnDown;
+  btnLeft_0_1 <= btnLeft;
+  btnRight_0_1 <= btnRight;
+  btnSpin_0_1 <= btnSpin;
   dbg_LED0 <= IO_Mapper_0_dbg_LED0;
   dbg_LED1 <= IO_Mapper_0_dbg_LED1;
   dbg_LED2 <= IO_Mapper_0_dbg_LED2;
@@ -560,10 +572,10 @@ begin
   tftData_out(7 downto 0) <= TTF_Driver_0_tftData_out(7 downto 0);
 IO_Mapper_0: component design_1_IO_Mapper_0_0
      port map (
-      btnDown => '0',
-      btnLeft => '0',
-      btnRight => '0',
-      btnSpin => '0',
+      btnDown => btnDown_0_1,
+      btnLeft => btnLeft_0_1,
+      btnRight => btnRight_0_1,
+      btnSpin => btnSpin_0_1,
       clk => processing_system7_0_FCLK_CLK0,
       dbg_LED0 => IO_Mapper_0_dbg_LED0,
       dbg_LED1 => IO_Mapper_0_dbg_LED1,

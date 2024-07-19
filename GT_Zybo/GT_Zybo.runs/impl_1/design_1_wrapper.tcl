@@ -106,7 +106,6 @@ set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
   set_param chipscope.maxJobs 8
-  set_param bd.open.in_stealth_mode 1
   set_param runs.launchOptions { -jobs 16  }
   open_checkpoint design_1_wrapper_routed.dcp
   set_property webtalk.parent_dir C:/GraviTris/GT_Zybo/GT_Zybo.cache/wt [current_project]
