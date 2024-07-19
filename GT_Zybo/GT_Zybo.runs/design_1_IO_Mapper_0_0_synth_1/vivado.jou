@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Jul 19 20:36:04 2024
-# Process ID: 24520
+# Start of session at: Fri Jul 19 20:50:46 2024
+# Process ID: 27592
 # Current directory: C:/GraviTris/GT_Zybo/GT_Zybo.runs/design_1_IO_Mapper_0_0_synth_1
 # Command line: vivado.exe -log design_1_IO_Mapper_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_IO_Mapper_0_0.tcl
 # Log file: C:/GraviTris/GT_Zybo/GT_Zybo.runs/design_1_IO_Mapper_0_0_synth_1/design_1_IO_Mapper_0_0.vds
@@ -19,6 +19,6 @@
 # Host memory       :34029 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39129 MB
-# Available Virtual :21261 MB
+# Available Virtual :20627 MB
 #-----------------------------------------------------------
 source design_1_IO_Mapper_0_0.tcl -notrace

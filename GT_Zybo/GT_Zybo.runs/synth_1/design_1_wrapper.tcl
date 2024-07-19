@@ -74,7 +74,7 @@ set_property ip_output_repo c:/GraviTris/GT_Zybo/GT_Zybo.cache/ip [current_proje
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib C:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd
+read_vhdl -library xil_defaultlib c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd
 add_files C:/GraviTris/GT_Zybo/GT_Zybo.srcs/sources_1/bd/design_1/design_1.bd
 set_property used_in_implementation false [get_files -all c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc]
 set_property used_in_implementation false [get_files -all c:/GraviTris/GT_Zybo/GT_Zybo.gen/sources_1/bd/design_1/ip/design_1_axi_bram_ctrl_0_0/design_1_axi_bram_ctrl_0_0_ooc.xdc]
