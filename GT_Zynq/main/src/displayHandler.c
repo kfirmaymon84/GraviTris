@@ -396,7 +396,7 @@ void clrBuff(uint8_t width, uint8_t height){
     if(size > 7200)
         size = 7200;
 
-    for(int i =0;i<size+1;i++){
+    for(int i =0;i<size+10;i++){
         XBram_WriteReg(XPAR_AXI_BRAM_CTRL_0_BASEADDR, i*4, 0);
     }
 }

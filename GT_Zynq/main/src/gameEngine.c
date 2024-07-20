@@ -1,6 +1,7 @@
 #include "gameEngine.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include "stdlib.h"
 
 #include "sleep.h"
 #include "commonDisplayHandler.h"
@@ -134,7 +135,6 @@ void gameTick() {
 	bool bGameOver = false;
 	
 	bool isGridHasChanged = true;
-	uint16_t posToDel[17] = { 0 };
 
 	//Init  game board
 	drawScore(0, true);
@@ -152,8 +152,8 @@ void gameTick() {
 
 		// Input ========================
 		buttonsTick();
-		// Game Logic ===================
 
+		// Game Logic ===================
 		// Handle player movement
 		nCurrentX += (buttons.isRightPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX + 1, nCurrentY)) ? 1 : 0;
 		nCurrentX -= (buttons.isLeftPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX - 1, nCurrentY)) ? 1 : 0;
@@ -192,7 +192,10 @@ void gameTick() {
 							grid[(nCurrentY + py) * GRID_WIDTH + (nCurrentX + px)] = nCurrentPiece + 1;
 						}
 				//Clear last tetremino from temp memory
-				memset(lastTetremino, 0, sizeof(tetromino));
+                //memset(lastTetremino, 0, sizeof(tetromino));
+                for(uint16_t i=0;i<sizeof(lastTetremino);i++)
+                    lastTetremino[i] = 0;
+				
 				isGridHasChanged = true;
 
 				// scan for full lines
@@ -215,7 +218,6 @@ void gameTick() {
 				if (linesFound > 0) {
 					uint8_t idx = 0;
 					uint8_t copyToLineIdx = lines[idx];
-					uint8_t lastCopyLineIdx = lines[idx];
 
 					//deleat Lines
 					for (int line = lines[idx]; line >= 0; line--) {
@@ -312,9 +314,6 @@ void gameTick() {
 	}
 	
 	// Oh Dear
-    while(1){
-
-    }
 	//CloseHandle(hConsole);
 	// std::cout << "Game Over!! Score:" << nScore << endl;
 	// system("pause");

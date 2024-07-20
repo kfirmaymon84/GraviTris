@@ -1,5 +1,5 @@
 #include "gpioHandler.h"
-#include <stdint.h>
+
 
 void gpio_pinSet(XGpio *InstancePtr, unsigned int Channel, uint8_t pin){
     uint32_t portState = XGpio_DiscreteRead(InstancePtr, Channel);
@@ -30,4 +30,12 @@ void gpio_portClearMask(XGpio *InstancePtr, unsigned int Channel, uint32_t mask)
 
 uint32_t gpio_portRead(XGpio *InstancePtr, unsigned int Channel){
     return XGpio_DiscreteRead(InstancePtr, Channel);
+}
+
+bool gpio_readPin(XGpio *InstancePtr, unsigned int Channel, uint8_t pin){
+    uint32_t port = XGpio_DiscreteRead(InstancePtr, Channel);
+    if(port & (0x1 << pin)){
+        return true;
+    }
+    return false;
 }

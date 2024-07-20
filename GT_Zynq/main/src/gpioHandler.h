@@ -2,6 +2,8 @@
 #define __GPIO_HANDLER_H_
 
 #include "xgpio.h"
+#include <stdint.h>
+#include "stdbool.h"
 
 #define MEMORY_OUT_PIN_CH 1
 #define TFT_DRIVER_OUT_PIN_CH 1
@@ -22,6 +24,10 @@
 //PortB
 #define TFT_DRIVER_READY 0
 #define DBG_SW 1
+#define BTN_LEFT    2
+#define BTN_RIGHT   3
+#define BTN_DOWN    4
+#define BTN_SPIN    5
 
 void gpio_pinSet(XGpio *InstancePtr, unsigned int Channel, uint8_t pin);
 void gpio_pinClear(XGpio *InstancePtr, unsigned int Channel, uint8_t pin);
@@ -29,4 +35,6 @@ void gpio_pinToggle(XGpio *InstancePtr, unsigned int Channel, uint8_t pin);
 void gpio_portSetMask(XGpio *InstancePtr, unsigned int Channel, uint32_t mask);
 void gpio_portClearMask(XGpio *InstancePtr, unsigned int Channel, uint32_t mask);
 uint32_t gpio_portRead(XGpio *InstancePtr, unsigned int Channel);
+bool gpio_readPin(XGpio *InstancePtr, unsigned int Channel, uint8_t pin);
+
 #endif //__GPIO_HANDLER_H_
