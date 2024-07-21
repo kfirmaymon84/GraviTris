@@ -1,0 +1,3 @@
+C:/GraviTris/GT_Zynq/GT_Zynq/build/CMakeFiles/GT_Zynq.elf.dir
+C:/GraviTris/GT_Zynq/GT_Zynq/build/CMakeFiles/edit_cache.dir
+C:/GraviTris/GT_Zynq/GT_Zynq/build/CMakeFiles/rebuild_cache.dir

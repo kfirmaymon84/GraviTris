@@ -1,0 +1,13 @@
+# ninja log v5
+42	892	7420401633707779	CMakeFiles/GT_Zynq.elf.dir/platform.c.obj	f851ae09527aac22
+12	892	7420401633793218	CMakeFiles/GT_Zynq.elf.dir/commonDisplayHandler.c.obj	88fc20832642c792
+19	705	7420401630744729	CMakeFiles/GT_Zynq.elf.dir/main.c.obj	2bca3e635ddb16fa
+17	883	7420401632406980	CMakeFiles/GT_Zynq.elf.dir/gpioHandler.c.obj	541da011a61c1053
+15	705	7420401630608751	CMakeFiles/GT_Zynq.elf.dir/displayHandler.c.obj	b842d7dc6ce4f8bf
+892	1173	7420401635002114	GT_Zynq.elf	675dd7fd7903eb4
+25	95	7420554026871538	CMakeFiles/GT_Zynq.elf.dir/platform.c.obj	f851ae09527aac22
+21	131	7420554027223218	CMakeFiles/GT_Zynq.elf.dir/gpioHandler.c.obj	541da011a61c1053
+16	137	7420554027288576	CMakeFiles/GT_Zynq.elf.dir/commonDisplayHandler.c.obj	88fc20832642c792
+23	148	7420554027414030	CMakeFiles/GT_Zynq.elf.dir/main.c.obj	2bca3e635ddb16fa
+19	153	7420554027454038	CMakeFiles/GT_Zynq.elf.dir/displayHandler.c.obj	b842d7dc6ce4f8bf
+153	264	7420554028287327	GT_Zynq.elf	675dd7fd7903eb4
