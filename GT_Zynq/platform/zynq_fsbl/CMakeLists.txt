@@ -60,6 +60,30 @@ collect(PROJECT_LIB_DEPS xilstandalone;xiltimer;xilffs;xilrsa)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 collect(PROJECT_LIB_DEPS gcc)
 collect(PROJECT_LIB_DEPS c)
 

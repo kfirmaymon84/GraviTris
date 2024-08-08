@@ -24,10 +24,12 @@
 //PortB
 #define TFT_DRIVER_READY 0
 #define DBG_SW 1
-#define BTN_LEFT    2
-#define BTN_RIGHT   3
-#define BTN_DOWN    4
-#define BTN_SPIN    5
+
+//MIO
+#define BTN_LEFT    12
+#define BTN_RIGHT   14
+#define BTN_DOWN    13
+#define BTN_SPIN    15
 
 void gpio_pinSet(XGpio *InstancePtr, unsigned int Channel, uint8_t pin);
 void gpio_pinClear(XGpio *InstancePtr, unsigned int Channel, uint8_t pin);

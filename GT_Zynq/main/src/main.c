@@ -104,6 +104,11 @@ int main() {
     case 'i':
       xil_printf("Btn50 = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, 50));
       xil_printf("Btn51 = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, 51));
+      xil_printf("BtnLeft = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, BTN_LEFT));
+      xil_printf("BtnRight = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, BTN_RIGHT));
+      xil_printf("BtnDown = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, BTN_DOWN));
+      xil_printf("BtnSpin = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, BTN_SPIN));
+      
       xil_printf("PORTB = 0x%08X\n", gpio_portRead(&gpio, 2));
       XGpioPs_WritePin(&gpioPs, 7, temp);
       temp = !(temp);
@@ -151,6 +156,11 @@ void initGPIO() {
   status = XGpioPs_CfgInitialize(&gpioPs, gpioPsConfig, gpioPsConfig->BaseAddr);
   if (status != XST_SUCCESS)
     xil_printf("Device Init Failed\n");
+
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_LEFT, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_RIGHT, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_DOWN, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_SPIN, 0);
 
   XGpioPs_SetDirectionPin(&gpioPs, 50, 0);
   XGpioPs_SetDirectionPin(&gpioPs, 51, 0);
