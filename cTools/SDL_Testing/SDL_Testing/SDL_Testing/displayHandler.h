@@ -3,6 +3,13 @@
 
 #include <stdint.h>
 
+enum displayOrientation {
+    display_0Deg = 0,
+    display_90Deg,
+    display_180Deg,
+    display_270Deg
+};
+
 //######### common Display function #########
 void displayInit();
 void setDisplayWindow(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
@@ -14,4 +21,8 @@ uint8_t getPixel(uint16_t pixelNumber);
 
 void drawMemory();
 void override_clearScreen();
+
+void override_rotateScreen(uint8_t orientation);
+
+
 #endif //__DISPLAY_HANDLER_H_

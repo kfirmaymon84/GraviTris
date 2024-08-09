@@ -3,6 +3,7 @@
 
 #include <time.h>
 #include <stdint.h>
+#include "displayHandler.h"
 
 struct s_buttons
 {
@@ -13,6 +14,7 @@ struct s_buttons
 };
 
 void buttonsTick();
+enum displayOrientation getDisplayRotetion();
 void delay_ms(uint32_t timeout);
 
 #endif //__IO_HANDLER_H_

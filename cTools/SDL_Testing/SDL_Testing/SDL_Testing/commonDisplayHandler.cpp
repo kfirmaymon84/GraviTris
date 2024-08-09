@@ -14,10 +14,6 @@ const uint16_t colorPallet[] = { BLACK, MAROON, GREEN, OLIVE,
 
 //############################# Common Display Handler //#############################
 
-// void tft_SetDisplayWindow(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
-// 	setDisplayWindow(x, y, x + width, y + height);
-// }
-
 //Draw 8 color bar to memory
 void draw8ColorBars() {
     const int BAR_WIDTH = DISPLAY_WIDTH / 8;
@@ -241,7 +237,7 @@ void drawScore(uint16_t score, bool isDrawBorder) {
 
 void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
     //Board parameters
-    const uint8_t xPos = 10;
+    const uint8_t xPos = 5;
     const uint8_t yPos = 50;
     const uint8_t iconWidth = 24;
     const uint8_t iconHeight = 24;
@@ -283,3 +279,38 @@ void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
             white);
     }
 }
+
+void nextPiece(uint8_t piece, bool isDrawBorder) {
+    //Board parameters
+    const uint8_t xPos = 204;
+    const uint8_t yPos = 50;
+    const uint8_t width = 36;
+    const uint8_t height = 65;
+    const uint8_t color1 = white;
+    const uint8_t color2 = blue;
+
+    //Preset board
+    if (isDrawBorder) {
+        drawEmpty(xPos, yPos, width, height);
+        drawBorder(xPos, yPos, width, height, color1, color2);
+    }
+    else {
+        drawEmpty(xPos+3, yPos+3, width-6, height-6);
+    }
+
+    uint16_t idx = 0;
+    for (int px = 0; px < 4; px++) {
+        for (int py = 0; py < 4; py++) {
+            uint8_t block = tetromino[piece][idx++];
+            if (block != L'.') {
+                uint8_t color = ((piece + 1) << 4) + (piece + 1);
+                drawGameBlock(xPos + (py*10), //X
+                    yPos + 10 + (px*10),//Y
+                    color);//Color
+
+                //posToDel[idx++] = ((py * 16) + nCurrentX);
+            }
+        }
+    }
+}
+

@@ -92,6 +92,7 @@ void clrBuff(uint8_t width, uint8_t height) {
 void writeByteToMemory(uint16_t address, uint8_t data) {
     mem8Ptr[address] = data;
 }
+
 void write32ToMemory(uint16_t address, uint32_t data) {
     mem32Ptr[address] = data;
 }
@@ -129,6 +130,7 @@ uint8_t getPixel(uint16_t pixelNumber) {
 
     return pixel;
 }
+
 // draw canvas from memory
 void drawMemory() {
     uint8_t drawWidth = memoryBuffer[0] >> 8;
@@ -166,4 +168,8 @@ void override_clearScreen() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
+}
+
+void override_rotateScreen(uint8_t orientation) {
+
 }

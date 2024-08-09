@@ -80,4 +80,13 @@ static uint8_t numbers[10][48] = {
 	  0x00, 0x03, 0x00, 0x1f, 0x00, 0x1f }					//9
 };
 
+static char tetromino[7][17] = { // Tetronimos 4x4
+	"..I...I...I...I.",//I
+	"..T..TT...T.....",//T
+	".....OO..OO.....",//O
+	"..Z..ZZ..Z......",//Z
+	".S...SS...S.....",//S
+	".L...L...LL.....",//L
+	"..J...J..JJ....."//J
+};
 #endif //__DRAW_OBJECTS_H_

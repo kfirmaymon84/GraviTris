@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "stdlib.h"
-
+#include <string.h>
 
 #include "commonDisplayHandler.h"
 #include "displayHandler.h"
@@ -29,17 +29,40 @@ uint16_t lastPosX = 0;
 uint16_t lastPosY = 0;
 uint16_t lastRotetion = 0;
 
-char tetromino[7][17] = { // Tetronimos 4x4
-	"..I...I...I...I.",//I
-	"..T..TT...T.....",//T
-	".....OO..OO.....",//O
-	"..Z..ZZ..Z......",//Z
-	".S...SS...S.....",//S
-	".L...L...LL.....",//L
-	"..J...J..JJ....."//J
-};
 char emptyBlock[17] = { 0 };
 
+void rotateTable(uint8_t* table, enum displayOrientation rotation) {
+	uint8_t tempTable[GRID_WIDTH * GRID_WIDTH] = { 0 };
+	switch (rotation) {
+	case display_0Deg:
+		return;
+		break;
+	case display_90Deg:
+		for (uint8_t y = 0; y < GRID_WIDTH; y++) {
+			for (uint8_t x = 0; x < GRID_WIDTH; x++) {
+				tempTable[(x * GRID_WIDTH) + (GRID_WIDTH - 1 - y)] = table[(y * GRID_WIDTH) + x];
+			}
+		}
+		break;
+	case display_180Deg:
+		for (uint8_t y = 0; y < GRID_WIDTH; y++) {
+			for (uint8_t x = 0; x < GRID_WIDTH; x++) {
+				tempTable[(GRID_WIDTH - 1 - y) * GRID_WIDTH + GRID_WIDTH - 1 - x] = table[(y * GRID_WIDTH) + x];
+			}
+		}
+		break;
+	case display_270Deg:
+		for (uint8_t y = 0; y < GRID_WIDTH; y++) {
+			for (uint8_t x = 0; x < GRID_WIDTH; x++) {
+				tempTable[(GRID_WIDTH - 1 - x) * GRID_WIDTH + y] = table[(y * GRID_WIDTH) + x];
+			}
+		}
+		break;
+	default:
+		break;
+	}
+	memcpy(table, tempTable, sizeof(tempTable));
+}
 
 int Rotate(int px, int py, int r)
 {
@@ -119,6 +142,7 @@ void gameTick() {
 
 	// Game Logic
 	int nCurrentPiece = 0;
+	int nNextPiece = 0;
 	int nCurrentRotation = 0;
 	int nCurrentX = GRID_WIDTH / 2;
 	int nCurrentY = 0;
@@ -129,8 +153,10 @@ void gameTick() {
 	int nPieceCount = 0;
 	int nScore = 0;
 	bool bGameOver = false;
+	enum displayOrientation lastOrientation = display_0Deg;
 
 	bool isGridHasChanged = true;
+	PowerUps_S powerUps = { true, true, true };
 
 	//Init  game board
 	drawScore(0, true);
@@ -138,6 +164,11 @@ void gameTick() {
 		GRID_WIDTH * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH), //Width
 		GRID_HEIGHT * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH),//Height
 		white, green);// Colors	
+
+	nNextPiece = rand() % 7;
+	nextPiece(nNextPiece, true);
+
+	drawPowerUps(&powerUps, true);
 
 	while (!bGameOver) // Main Loop
 	{
@@ -148,7 +179,30 @@ void gameTick() {
 
 		// Input ========================
 		buttonsTick();
+		enum displayOrientation orientation = getDisplayRotetion(); // Get display orientation
+		if (lastOrientation != orientation) {
+			//Rotate display
+			rotateTable(grid, orientation);
 
+			drawScore(0, true);
+			drawBorder(GRID_POS_X - BOARD_BORDER_WIDTH, GRID_POS_Y - BOARD_BORDER_WIDTH, //x,y
+				GRID_WIDTH * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH), //Width
+				GRID_HEIGHT * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH),//Height
+				white, green);// Colors	
+
+			drawPowerUps(&powerUps, true);
+
+			for (int idx = 0; idx < (GRID_WIDTH * GRID_HEIGHT); idx++) {
+				if (grid[idx] != 0) {
+					uint8_t color = (grid[idx] << 4) + grid[idx];
+					drawGameBlock(GRID_POS_X + ((idx % 16) * BLOCK_SIZE), //X
+						GRID_POS_Y + ((idx / 16) * BLOCK_SIZE),//Y
+						color);//Color
+				}
+			}
+
+			lastOrientation = orientation;
+		}
 		// Game Logic ===================
 		// Handle player movement
 		nCurrentX += (buttons.isRightPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX + 1, nCurrentY)) ? 1 : 0;
@@ -230,7 +284,6 @@ void gameTick() {
 					isGridHasChanged = true;
 				}
 
-
 				nScore += 25;
 				//if (!vLines.empty())	nScore += (1 << vLines.size()) * 100;
 
@@ -238,8 +291,9 @@ void gameTick() {
 				nCurrentX = GRID_WIDTH / 2;
 				nCurrentY = 0;
 				nCurrentRotation = 0;
-				nCurrentPiece = rand() % 7;
-
+				nCurrentPiece = nNextPiece;
+				nNextPiece = rand() % 7;
+				nextPiece(nNextPiece, false);
 				// If piece does not fit straight away, game over!
 				bGameOver = !DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX, nCurrentY);
 			}
@@ -292,8 +346,6 @@ void gameTick() {
 						drawGameBlock(GRID_POS_X + ((nCurrentX + px) * BLOCK_SIZE), //X
 							GRID_POS_Y + ((nCurrentY + py) * BLOCK_SIZE),//Y
 							color);//Color
-
-						//posToDel[idx++] = ((py * 16) + nCurrentX);
 					}
 					lastTetremino[idx++] = block;
 				}

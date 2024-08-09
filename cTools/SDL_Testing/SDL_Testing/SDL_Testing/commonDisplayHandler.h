@@ -60,4 +60,5 @@ void drawEmpty(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
 void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder);
 
 void drawScore(uint16_t score, bool isDrawBorder);
+void nextPiece(uint8_t piece, bool isDrawBorder);
 #endif //_COMMON_DISPLAY_HANDLER_H_
