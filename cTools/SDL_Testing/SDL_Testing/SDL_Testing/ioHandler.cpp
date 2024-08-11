@@ -15,17 +15,17 @@ void buttonsTick() {
 	buttons.isSpinPressed = (0x8000 & GetAsyncKeyState(VK_LCONTROL)) != 0;
 }
 
-enum displayOrientation getDisplayRotetion() {
-	static enum displayOrientation orientation = display_0Deg;
+enum rotationEnum getDisplayRotetion() {
+	static enum rotationEnum orientation = rotation_0Deg;
 
-	if ((0x8000 & GetAsyncKeyState(0x30)) != 0) //	0 Key
-		orientation = display_0Deg;
-	else if ((0x8000 & GetAsyncKeyState(0x31)) != 0) //	1 Key
-		orientation =  display_90Deg;
+	if ((0x8000 & GetAsyncKeyState(0x31)) != 0) //	1 Key
+		orientation = rotation_0Deg;
 	else if ((0x8000 & GetAsyncKeyState(0x32)) != 0) //	2 Key
-		orientation = display_180Deg;
+		orientation =  rotation_90Deg;
 	else if ((0x8000 & GetAsyncKeyState(0x33)) != 0) //	3 Key
-		orientation = display_270Deg;
+		orientation = rotation_180Deg;
+	else if ((0x8000 & GetAsyncKeyState(0x34)) != 0) //	4 Key
+		orientation = rotation_270Deg;
 	
 	return orientation;
 }

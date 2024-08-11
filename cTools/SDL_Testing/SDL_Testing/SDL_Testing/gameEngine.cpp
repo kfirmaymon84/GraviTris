@@ -11,6 +11,7 @@
 
 extern s_buttons buttons;
 
+bool isGridCompress();
 void delLine(uint8_t lineNumber);
 void copyLineToLine(uint8_t copyLine, uint8_t toLine);
 
@@ -31,27 +32,28 @@ uint16_t lastRotetion = 0;
 
 char emptyBlock[17] = { 0 };
 
-void rotateTable(uint8_t* table, enum displayOrientation rotation) {
+void rotateTable(uint8_t* table, enum rotationEnum rotation) {
 	uint8_t tempTable[GRID_WIDTH * GRID_WIDTH] = { 0 };
+
 	switch (rotation) {
-	case display_0Deg:
+	case rotation_0Deg:
 		return;
 		break;
-	case display_90Deg:
+	case rotation_90Deg:
 		for (uint8_t y = 0; y < GRID_WIDTH; y++) {
 			for (uint8_t x = 0; x < GRID_WIDTH; x++) {
 				tempTable[(x * GRID_WIDTH) + (GRID_WIDTH - 1 - y)] = table[(y * GRID_WIDTH) + x];
 			}
 		}
 		break;
-	case display_180Deg:
+	case rotation_180Deg:
 		for (uint8_t y = 0; y < GRID_WIDTH; y++) {
 			for (uint8_t x = 0; x < GRID_WIDTH; x++) {
 				tempTable[(GRID_WIDTH - 1 - y) * GRID_WIDTH + GRID_WIDTH - 1 - x] = table[(y * GRID_WIDTH) + x];
 			}
 		}
 		break;
-	case display_270Deg:
+	case rotation_270Deg:
 		for (uint8_t y = 0; y < GRID_WIDTH; y++) {
 			for (uint8_t x = 0; x < GRID_WIDTH; x++) {
 				tempTable[(GRID_WIDTH - 1 - x) * GRID_WIDTH + y] = table[(y * GRID_WIDTH) + x];
@@ -153,7 +155,6 @@ void gameTick() {
 	int nPieceCount = 0;
 	int nScore = 0;
 	bool bGameOver = false;
-	enum displayOrientation lastOrientation = display_0Deg;
 
 	bool isGridHasChanged = true;
 	PowerUps_S powerUps = { true, true, true };
@@ -179,19 +180,36 @@ void gameTick() {
 
 		// Input ========================
 		buttonsTick();
-		enum displayOrientation orientation = getDisplayRotetion(); // Get display orientation
-		if (lastOrientation != orientation) {
-			//Rotate display
-			rotateTable(grid, orientation);
+		enum rotationEnum orientation = getDisplayRotetion(); // Get display orientation
+		static enum rotationEnum lastOrientation = orientation;
+		const rotationEnum orientationMap[4][4] = {
+			{rotation_0Deg,rotation_90Deg,rotation_180Deg,rotation_270Deg},
+			{rotation_270Deg,rotation_0Deg,rotation_90Deg,rotation_180Deg},
+			{rotation_180Deg,rotation_270Deg,rotation_0Deg,rotation_90Deg},
+			{rotation_90Deg,rotation_180Deg,rotation_270Deg,rotation_0Deg}
+		};
+		// Game Logic ===================
 
+		// Handle player movement
+		if (lastOrientation != orientation) {
+
+			enum rotationEnum newOrientation = orientationMap[lastOrientation][orientation];
+			lastOrientation = newOrientation;
+
+			//Rotate display
+			rotateTable(grid, (enum rotationEnum)newOrientation);
+
+			//Redraw Score
 			drawScore(0, true);
+			drawPowerUps(&powerUps, true);
+
+			//Draw border
 			drawBorder(GRID_POS_X - BOARD_BORDER_WIDTH, GRID_POS_Y - BOARD_BORDER_WIDTH, //x,y
 				GRID_WIDTH * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH), //Width
 				GRID_HEIGHT * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH),//Height
 				white, green);// Colors	
-
-			drawPowerUps(&powerUps, true);
-
+			
+			//Draw blocks in grid
 			for (int idx = 0; idx < (GRID_WIDTH * GRID_HEIGHT); idx++) {
 				if (grid[idx] != 0) {
 					uint8_t color = (grid[idx] << 4) + grid[idx];
@@ -201,10 +219,28 @@ void gameTick() {
 				}
 			}
 
+			//Compress grig after rotation
+			while (isGridCompress()) {
+				//Draw border
+				drawBorder(GRID_POS_X - BOARD_BORDER_WIDTH, GRID_POS_Y - BOARD_BORDER_WIDTH, //x,y
+					GRID_WIDTH * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH), //Width
+					GRID_HEIGHT * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH),//Height
+					white, green);// Colors	
+
+				//Draw blocks in grid
+				for (int idx = 0; idx < (GRID_WIDTH * GRID_HEIGHT); idx++) {
+					if (grid[idx] != 0) {
+						uint8_t color = (grid[idx] << 4) + grid[idx];
+						drawGameBlock(GRID_POS_X + ((idx % 16) * BLOCK_SIZE), //X
+							GRID_POS_Y + ((idx / 16) * BLOCK_SIZE),//Y
+							color);//Color
+					}
+				}
+				delay_ms(50);
+			}
 			lastOrientation = orientation;
 		}
-		// Game Logic ===================
-		// Handle player movement
+
 		nCurrentX += (buttons.isRightPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX + 1, nCurrentY)) ? 1 : 0;
 		nCurrentX -= (buttons.isLeftPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX - 1, nCurrentY)) ? 1 : 0;
 		nCurrentY += (buttons.isDownPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX, nCurrentY + 1)) ? 1 : 0;
@@ -365,6 +401,27 @@ void gameTick() {
 	//CloseHandle(hConsole);
 	// std::cout << "Game Over!! Score:" << nScore << endl;
 	// system("pause");
+}
+
+bool isGridCompress() {
+	bool isCompressed = false;
+
+	for (uint8_t y = GRID_WIDTH - 1; y != 0; y--) {
+		for (uint8_t x = 0; x < GRID_WIDTH; x++) {
+			uint16_t testCell = (y * GRID_WIDTH) + x;
+			uint16_t aboveCell = ((y - 1) * GRID_WIDTH) + x;
+			//If empty cell
+			if (grid[testCell] == 0) {
+				//If cell above not empty pull it down
+				if (grid[aboveCell] != 0) {
+					grid[testCell] = grid[aboveCell];
+					grid[aboveCell] = 0;
+					isCompressed = true;
+				}
+			}
+		}
+	}
+	return isCompressed;
 }
 
 void delLine(uint8_t lineNumber) {

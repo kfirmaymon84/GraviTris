@@ -3,13 +3,6 @@
 
 #include <stdint.h>
 
-enum displayOrientation {
-    display_0Deg = 0,
-    display_90Deg,
-    display_180Deg,
-    display_270Deg
-};
-
 //######### common Display function #########
 void displayInit();
 void setDisplayWindow(uint8_t x, uint8_t y, uint8_t width, uint8_t height);

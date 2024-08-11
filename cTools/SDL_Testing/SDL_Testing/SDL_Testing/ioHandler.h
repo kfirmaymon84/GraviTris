@@ -5,6 +5,13 @@
 #include <stdint.h>
 #include "displayHandler.h"
 
+enum rotationEnum {
+	rotation_0Deg = 0,
+	rotation_90Deg = 1,
+	rotation_180Deg = 2,
+	rotation_270Deg = 3
+};
+
 struct s_buttons
 {
 	bool isLeftPressed;
@@ -14,7 +21,7 @@ struct s_buttons
 };
 
 void buttonsTick();
-enum displayOrientation getDisplayRotetion();
+enum rotationEnum getDisplayRotetion();
 void delay_ms(uint32_t timeout);
 
 #endif //__IO_HANDLER_H_
