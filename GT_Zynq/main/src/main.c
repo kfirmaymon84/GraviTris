@@ -29,6 +29,7 @@
 #include "xbram.h"
 #include "xgpio.h"
 #include "xuartps.h"
+#include "xiicps.h"
 
 #include "commonDisplayHandler.h"
 #include "displayHandler.h"
@@ -38,9 +39,11 @@
 
 void initGPIO();
 void initBram();
+void initI2C();
 
 XGpio gpio;
 XGpioPs gpioPs;
+XIicPs iicPs;
 XBram Bram; /* The Instance of the BRAM Driver */
 bool temp = true;
 int main() {
@@ -179,6 +182,21 @@ void initBram() {
 
   Status = XBram_CfgInitialize(&Bram, ConfigPtr, ConfigPtr->CtrlBaseAddress);
   if (Status != XST_SUCCESS) {
-    xil_printf("BRAM Config Error...");
+    xil_printf("BRAM initialization Error...");
   }
+}
+
+void initI2C(){
+	int Status;
+    XIicPs_Config *ConfigPtr;
+
+    ConfigPtr = XIicPs_LookupConfig(XPAR_I2C0_BASEADDR);
+    if (ConfigPtr == (XIicPs_Config *)NULL) {
+        xil_printf("I2C Config Error...");
+    }
+
+    Status = XIicPs_CfgInitialize(&iicPs, ConfigPtr, ConfigPtr->BaseAddress);
+      if (Status != XST_SUCCESS) {
+        xil_printf("I2C initialization Error...");
+    }
 }
