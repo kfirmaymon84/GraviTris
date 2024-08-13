@@ -304,21 +304,21 @@ void override_writeColor(unsigned long color) {
  *
  *  @return Void.
  */
-void override_rotateScreen(uint8_t orientation) {
+void override_rotateScreen(enum rotationEnum orientation) {
   uint8_t data = 0;
   uint8_t offset = 0;
   takeOverride();
   switch (orientation) {
-  case display_0Deg:
+  case rotation_0Deg:
     break;
-  case display_90Deg:
+  case rotation_90Deg:
     data = 3;
     break;
-  case display_180Deg:
+  case rotation_180Deg:
     data = 6;
     offset = 0x50;
     break;
-  case display_270Deg:
+  case rotation_270Deg:
     data = 5;
     offset = 0x50;
     break;

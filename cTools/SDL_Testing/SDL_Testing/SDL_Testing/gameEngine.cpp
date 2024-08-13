@@ -426,7 +426,7 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
  *   returns: None.
  */
 void displayRotationHandler() {
-	const rotationEnum orientationMap[4][4] = {
+	const enum rotationEnum orientationMap[4][4] = {
 	{rotation_0Deg,rotation_90Deg,rotation_180Deg,rotation_270Deg},
 	{rotation_270Deg,rotation_0Deg,rotation_90Deg,rotation_180Deg},
 	{rotation_180Deg,rotation_270Deg,rotation_0Deg,rotation_90Deg},
@@ -434,7 +434,7 @@ void displayRotationHandler() {
 	};
 
 	enum rotationEnum orientation = getDisplayRotetion(); // Get display orientation
-	static enum rotationEnum lastOrientation = orientation;
+	static enum rotationEnum lastOrientation = rotation_0Deg;
 
 	if (lastOrientation != orientation) {
 

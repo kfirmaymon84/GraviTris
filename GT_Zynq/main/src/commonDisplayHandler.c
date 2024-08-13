@@ -229,7 +229,7 @@ void drawScore(uint16_t score, bool isDrawBorder) {
             //Clear digit space
             drawEmpty(dig_xPos + (i * digitWidth), dig_yPos, digitWidth, digitHeight);
             //Draw new digit
-            drawBitmap(&numbers[digits[i]][0],
+            drawBitmap((uint8_t*)&numbers[digits[i]][0],
                 dig_xPos + (i * digitWidth),
                 dig_yPos,
                 digitWidth,
@@ -257,7 +257,7 @@ void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
     }
 
     if (powerUps->isRotate) {
-        drawBitmap(rotate__iconrotate_icon24_24,
+        drawBitmap((uint8_t*)rotate__iconrotate_icon24_24,
             xPos + 3,
             yPos + 3,
             iconWidth,
@@ -266,7 +266,7 @@ void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
     }
 
     if (powerUps->isSpinOut) {
-        drawBitmap(spinOut24_24spinOut24_24,
+        drawBitmap((uint8_t*)spinOut24_24spinOut24_24,
             xPos + 3,
             yPos + 3 + iconHeight,
             iconWidth,
@@ -275,11 +275,45 @@ void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
     }
 
     if (powerUps->isShake) {
-        drawBitmap(Shake_icon24_24,
+        drawBitmap((uint8_t*)Shake_icon24_24,
             xPos + 3,
             yPos + 3 + iconHeight + iconHeight,
             iconWidth,
             iconHeight,
             white);
+    }
+}
+
+void nextPiece(uint8_t piece, bool isDrawBorder) {
+    //Board parameters
+    const uint8_t xPos = 204;
+    const uint8_t yPos = 50;
+    const uint8_t width = 36;
+    const uint8_t height = 65;
+    const uint8_t color1 = white;
+    const uint8_t color2 = blue;
+
+    //Preset board
+    if (isDrawBorder) {
+        drawEmpty(xPos, yPos, width, height);
+        drawBorder(xPos, yPos, width, height, color1, color2);
+    }
+    else {
+        drawEmpty(xPos+3, yPos+3, width-6, height-6);
+    }
+
+    uint16_t idx = 0;
+    for (int px = 0; px < 4; px++) {
+        for (int py = 0; py < 4; py++) {
+            uint8_t block = tetromino[piece][idx++];
+            if (block != L'.') {
+                uint8_t color = ((piece + 1) << 4) + (piece + 1);
+                drawGameBlock(xPos + (py*10), //X
+                    yPos + 10 + (px*10),//Y
+                    color);//Color
+
+                //posToDel[idx++] = ((py * 16) + nCurrentX);
+            }
+        }
     }
 }

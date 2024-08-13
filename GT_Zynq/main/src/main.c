@@ -33,8 +33,6 @@
 #include "xiicps.h"
 #include "xuartps.h"
 
-
-#include "Adafruit_MLX90393.h"
 #include "commonDisplayHandler.h"
 #include "displayHandler.h"
 #include "drawObjects.h"
@@ -74,6 +72,8 @@ int main() {
       displayInit();
       usleep(1000); // Delay 1 millisec
       gpio_pinClear(&gpio, TFT_DRIVER_OUT_PIN_CH, DBG_LED_1);
+
+      initDisplayRotetion();
       break;
     case '1':
       // Clear screen
@@ -91,10 +91,10 @@ int main() {
       draw8ColorBars();
       break;
     case '5':
-      drawBitmap(numbers[0], 0, 0, 16, 24, white);
+      drawBitmap((uint8_t*)numbers[0], 0, 0, 16, 24, white);
       break;
     case '6':
-      drawBitmap(rotate__iconrotate_icon24_24, 0, 0, 24, 24, white);
+      drawBitmap((uint8_t*)rotate__iconrotate_icon24_24, 0, 0, 24, 24, white);
       break;
     case '7':
       clearScreen();
@@ -122,16 +122,16 @@ int main() {
       temp = !(temp);
       break;
     case 'q':
-      override_rotateScreen(display_0Deg);
+      override_rotateScreen(rotation_0Deg);
       break;
     case 'w':
-      override_rotateScreen(display_90Deg);
+      override_rotateScreen(rotation_90Deg);
       break;
     case 'e':
-      override_rotateScreen(display_180Deg);
+      override_rotateScreen(rotation_180Deg);
       break;
     case 'r':
-      override_rotateScreen(display_270Deg);
+      override_rotateScreen(rotation_270Deg);
       break;
     case 'g':
       displayInit();
@@ -216,18 +216,5 @@ void initI2C() {
   //         xil_printf("Found IC, Status = %d, Add = %2X\n",Status,i);
   //     sleep(0.1);
   // }
-    float x, y, z;
-    int16_t Mx,My,Mz;
-    while(MLX90393__init()){
-        xil_printf("MLX Init Failed");
-        usleep(100 * 1000);
-    }
-    while (1) {
-        MLX90393_readData(&x, &y, &z);
-        Mx = x;
-        My = y;
-        Mz = z;
-        xil_printf("X=%d, Y=%d, Z=%d\n", Mx, My, Mz);
-        usleep(100 * 1000);
-    }
+
 }

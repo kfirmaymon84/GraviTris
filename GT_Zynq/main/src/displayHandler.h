@@ -2,13 +2,9 @@
 #define __DISPLAY_HANDLER_H_
 
 #include "gpioHandler.h"
+#include "ioHandler.h"
 
-enum displayOrientation{
-    display_0Deg = 0,
-    display_90Deg,
-    display_180Deg,
-    display_270Deg
-};
+
 //Function declaration
 
 //TFT Handler functions
@@ -26,7 +22,7 @@ void displayInit();
 void override_clearScreen();
 void override_8bar();
 void override_writeColor(unsigned long color);
-void override_rotateScreen(uint8_t orientation);
+void override_rotateScreen(enum rotationEnum orientation);
 
 //RTL control functions
 void setDisplayWindow(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
