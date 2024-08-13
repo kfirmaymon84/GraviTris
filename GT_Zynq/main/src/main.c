@@ -23,19 +23,24 @@
 #include "xil_printf.h"
 #include "xparameters.h"
 #include <sleep.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <xil_types.h>
 
 #include "sleep.h"
 #include "xbram.h"
 #include "xgpio.h"
-#include "xuartps.h"
 #include "xiicps.h"
+#include "xuartps.h"
 
+
+#include "Adafruit_MLX90393.h"
 #include "commonDisplayHandler.h"
 #include "displayHandler.h"
 #include "drawObjects.h"
 #include "gameEngine.h"
 #include "gpioHandler.h"
+
 
 void initGPIO();
 void initBram();
@@ -51,7 +56,7 @@ int main() {
 
   initGPIO();
   initBram();
-
+  initI2C();
   xil_printf("Start\n");
 
   while (1) {
@@ -111,7 +116,7 @@ int main() {
       xil_printf("BtnRight = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, BTN_RIGHT));
       xil_printf("BtnDown = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, BTN_DOWN));
       xil_printf("BtnSpin = 0x%08X\n", XGpioPs_ReadPin(&gpioPs, BTN_SPIN));
-      
+
       xil_printf("PORTB = 0x%08X\n", gpio_portRead(&gpio, 2));
       XGpioPs_WritePin(&gpioPs, 7, temp);
       temp = !(temp);
@@ -186,17 +191,43 @@ void initBram() {
   }
 }
 
-void initI2C(){
-	int Status;
-    XIicPs_Config *ConfigPtr;
+void initI2C() {
+  int Status;
+  XIicPs_Config *ConfigPtr;
 
-    ConfigPtr = XIicPs_LookupConfig(XPAR_I2C0_BASEADDR);
-    if (ConfigPtr == (XIicPs_Config *)NULL) {
-        xil_printf("I2C Config Error...");
+#define IIC_SCLK_RATE 100000
+#define SLV_MON_LOOP_COUNT 0x00FFFFFF /**< Slave Monitor Loop Count*/
+
+  ConfigPtr = XIicPs_LookupConfig(XPAR_I2C0_BASEADDR);
+  if (ConfigPtr == (XIicPs_Config *)NULL) {
+    xil_printf("I2C Config Error...");
+  }
+
+  Status = XIicPs_CfgInitialize(&iicPs, ConfigPtr, ConfigPtr->BaseAddress);
+  if (Status != XST_SUCCESS) {
+    xil_printf("I2C initialization Error...");
+  }
+
+  XIicPs_SetSClk(&iicPs, IIC_SCLK_RATE);
+  // u8 *ptr = {0x17,0x2f};
+  // for(uint8_t i = 0x01;i<127;i++){
+  //     Status = XIicPs_MasterSendPolled(&iicPs, ptr, 1, i);
+  //     if(Status == 0)
+  //         xil_printf("Found IC, Status = %d, Add = %2X\n",Status,i);
+  //     sleep(0.1);
+  // }
+    float x, y, z;
+    int16_t Mx,My,Mz;
+    while(MLX90393__init()){
+        xil_printf("MLX Init Failed");
+        usleep(100 * 1000);
     }
-
-    Status = XIicPs_CfgInitialize(&iicPs, ConfigPtr, ConfigPtr->BaseAddress);
-      if (Status != XST_SUCCESS) {
-        xil_printf("I2C initialization Error...");
+    while (1) {
+        MLX90393_readData(&x, &y, &z);
+        Mx = x;
+        My = y;
+        Mz = z;
+        xil_printf("X=%d, Y=%d, Z=%d\n", Mx, My, Mz);
+        usleep(100 * 1000);
     }
 }
