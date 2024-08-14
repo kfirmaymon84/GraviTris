@@ -68,8 +68,8 @@ uint8_t drawGameBlock(uint8_t x, uint8_t y, uint8_t colors) {
     setDisplayWindow(x, y, 10, 10);
 
     uint8_t borderColor = white;
-    uint8_t color1 = colors >> 4;
-    uint8_t color2 = colors & 0x0F;
+    uint8_t color1 = colors;
+    uint8_t color2 = colors;//colors & 0x0F;
     for (uint8_t line = 0; line < 10; line++) {
         // Draw line 0 and last full color 1
         if (line == 0 || line == 9) {
@@ -306,7 +306,7 @@ void nextPiece(uint8_t piece, bool isDrawBorder) {
     for (int px = 0; px < 4; px++) {
         for (int py = 0; py < 4; py++) {
             uint8_t block = tetromino[piece][idx++];
-            if (block != L'.') {
+            if (block != 0) {
                 uint8_t color = ((piece + 1) << 4) + (piece + 1);
                 drawGameBlock(xPos + (py*10), //X
                     yPos + 10 + (px*10),//Y

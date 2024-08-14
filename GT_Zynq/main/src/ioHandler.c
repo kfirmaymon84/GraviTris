@@ -60,6 +60,7 @@ void initDisplayRotetion(){
 }
 
 enum rotationEnum getDisplayRotetion(){
+    static enum rotationEnum lastRotaion = rotation_0Deg;
     float x,y,z;
     MLX90393_readData(&x, &y, &z);
     double alpha = atan2(y, x) * 180/3.141;
@@ -69,17 +70,19 @@ enum rotationEnum getDisplayRotetion(){
 //ToDo: Test rotetion direction
     if(between(alphaRound, DEG_0_LOW, DEG_0_HIGH)){
         xil_printf("0 Deg\n");
-        return rotation_0Deg;
+        lastRotaion = rotation_0Deg;
     } else if (between(alphaRound, DEG_90_LOW, DEG_90_HIGH)) {
         xil_printf("90 Deg\n");
-        return rotation_90Deg;
+        lastRotaion = rotation_90Deg;
     } else if (between(alphaRound, DEG_180_LOW, DEG_180_HIGH)) {
         xil_printf("180 Deg\n");
-        return rotation_180Deg;
+        lastRotaion = rotation_180Deg;
     } else if(alphaRound > 160 || alphaRound < -160){
         xil_printf("270 Deg\n");
-        return rotation_270Deg;
+        lastRotaion = rotation_270Deg;
     } 
+
+    return lastRotaion;
 }
   
 

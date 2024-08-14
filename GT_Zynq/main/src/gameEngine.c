@@ -47,7 +47,6 @@ char emptyBlock[17] = { 0 };
 bool isGridHasChanged = true;
 PowerUps_S powerUps = { true, true, true };
 int nScore = 0;
-
 /*
  * Function: gameTick
  * ----------------------------
@@ -89,7 +88,7 @@ void gameTick() {
 
 		// Input ========================
 		buttonsTick();
-		displayRotationHandler();
+		//displayRotationHandler();
 		// Game Logic ===================
 		
 		// Handle player movement
@@ -111,6 +110,7 @@ void gameTick() {
 		// Force the piece down the playfield if it's time
 		if (bForceDown)
 		{
+            displayRotationHandler();//TEST DEBUGGGGGGG
 			// Update difficulty every 50 pieces
 			nSpeedCount = 0;
 			nPieceCount++;
@@ -126,8 +126,8 @@ void gameTick() {
 				// It can't! Lock the piece in place
 				for (int px = 0; px < 4; px++)
 					for (int py = 0; py < 4; py++)
-						if (tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)] != L'.') {
-							grid[(nCurrentY + py) * GRID_WIDTH + (nCurrentX + px)] = nCurrentPiece + 1;
+						if (tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)] != 0) {
+							grid[(nCurrentY + py) * GRID_WIDTH + (nCurrentX + px)] = tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)] ;//nCurrentPiece + 1;
 						}
 				//Clear last tetremino from temp memory
 				//memset(lastTetremino, 0, sizeof(tetromino));
@@ -203,7 +203,7 @@ void gameTick() {
 			for (int px = 0; px < 4; px++) {
 				for (int py = 0; py < 4; py++) {
 					uint8_t block = lastTetremino[idx++];
-					if (block != L'.' && block != 0) {
+					if (block != 0 && block != 0) {
 						clearGameBlock(GRID_POS_X + ((lastPosX + px) * BLOCK_SIZE), //X
 							GRID_POS_Y + ((lastPosY + py) * BLOCK_SIZE));//Y
 					}
@@ -215,8 +215,8 @@ void gameTick() {
 			for (int px = 0; px < 4; px++) {
 				for (int py = 0; py < 4; py++) {
 					uint8_t block = tetromino[nCurrentPiece][Rotate(px, py, nCurrentRotation)];
-					if (block != L'.') {
-						uint8_t color = ((nCurrentPiece + 1) << 4) + (nCurrentPiece + 1);
+					if (block != 0) {
+						uint8_t color = block;//((nCurrentPiece + 1) << 4) + (nCurrentPiece + 1);
 						drawGameBlock(GRID_POS_X + ((nCurrentX + px) * BLOCK_SIZE), //X
 							GRID_POS_Y + ((nCurrentY + py) * BLOCK_SIZE),//Y
 							color);//Color
@@ -273,7 +273,8 @@ void drawGameBoard(bool isDrawBlocks) {
 	if (isDrawBlocks) {
 		for (int idx = 0; idx < (GRID_WIDTH * GRID_HEIGHT); idx++) {
 			if (grid[idx] != 0) {
-				uint8_t color = (grid[idx] << 4) + grid[idx];
+				//uint8_t color = (grid[idx] << 4) + grid[idx];
+                uint8_t color = grid[idx];
 				drawGameBlock(GRID_POS_X + ((idx % 16) * BLOCK_SIZE), //X
 					GRID_POS_Y + ((idx / 16) * BLOCK_SIZE),//Y
 					color);//Color
@@ -390,15 +391,15 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
 			int fi = (nPosY + py) * GRID_WIDTH + (nPosX + px);
 
 			// Test if touch left boarder
-			if (tetromino[nTetromino][pi] != L'.' && (px + nPosX) < 0)
+			if (tetromino[nTetromino][pi] != 0 && (px + nPosX) < 0)
 				return false; // fail on first hit
 
 			// Test if touch right boarder
-			if (tetromino[nTetromino][pi] != L'.' && (px + nPosX) >= GRID_WIDTH)
+			if (tetromino[nTetromino][pi] != 0 && (px + nPosX) >= GRID_WIDTH)
 				return false; // fail on first hit
 
 			// Test if touch bottom boarder
-			if (tetromino[nTetromino][pi] != L'.' && (py + nPosY) > 15)
+			if (tetromino[nTetromino][pi] != 0 && (py + nPosY) > 15)
 				return false; // fail on first hit
 
 			// Check that test is in bounds. Note out of bounds does
@@ -410,7 +411,7 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
 				if (nPosY + py >= 0 && nPosY + py < GRID_HEIGHT)
 				{
 					// In Bounds so do collision check
-					if (tetromino[nTetromino][pi] != L'.' && grid[fi] != 0)
+					if (tetromino[nTetromino][pi] != 0 && grid[fi] != 0)
 						return false; // fail on first hit
 				}
 			}
@@ -453,7 +454,8 @@ void displayRotationHandler() {
 		//Draw blocks in grid
 		for (int idx = 0; idx < (GRID_WIDTH * GRID_HEIGHT); idx++) {
 			if (grid[idx] != 0) {
-				uint8_t color = (grid[idx] << 4) + grid[idx];
+				//uint8_t color = (grid[idx] << 4) + grid[idx];
+                uint8_t color = grid[idx];
 				drawGameBlock(GRID_POS_X + ((idx % 16) * BLOCK_SIZE), //X
 					GRID_POS_Y + ((idx / 16) * BLOCK_SIZE),//Y
 					color);//Color
