@@ -6,6 +6,7 @@
 #include <xil_printf.h>
 #include "stdbool.h"
 #include "Adafruit_MLX90393.h"
+#include <math.h>
 
 bool between(int x, int valLow, int valHigh) ;
 
@@ -42,14 +43,13 @@ void buttonsTick() {
 	
 }
 
-#define DEG_0_LOW   9000
-#define DEG_0_HIGH  13000
-#define DEG_90_LOW -22000
-#define DEG_90_HIGH -18000
-#define DEG_180_LOW -9000
-#define DEG_180_HIGH -4000
-#define DEG_270_LOW 18000
-#define DEG_270_HIGH 22000
+#define DEG_0_LOW   50
+#define DEG_0_HIGH  110
+#define DEG_90_LOW -30
+#define DEG_90_HIGH 30
+#define DEG_180_LOW -120
+#define DEG_180_HIGH -60
+
 
 void initDisplayRotetion(){
 
@@ -62,26 +62,24 @@ void initDisplayRotetion(){
 enum rotationEnum getDisplayRotetion(){
     float x,y,z;
     MLX90393_readData(&x, &y, &z);
-    int sense = x;
-    xil_printf("Sense = %d, ",sense);
+    double alpha = atan2(y, x) * 180/3.141;
+    int alphaRound = alpha;
+    xil_printf("Alpha = %d, ",alphaRound);
 
 //ToDo: Test rotetion direction
-    if(between(sense, DEG_0_LOW, DEG_0_HIGH)){
+    if(between(alphaRound, DEG_0_LOW, DEG_0_HIGH)){
         xil_printf("0 Deg\n");
         return rotation_0Deg;
-    } else if (between(sense, DEG_90_LOW, DEG_90_HIGH)) {
+    } else if (between(alphaRound, DEG_90_LOW, DEG_90_HIGH)) {
         xil_printf("90 Deg\n");
-        return rotation_270Deg;
-    } else if (between(sense, DEG_180_LOW, DEG_180_HIGH)) {
+        return rotation_90Deg;
+    } else if (between(alphaRound, DEG_180_LOW, DEG_180_HIGH)) {
         xil_printf("180 Deg\n");
         return rotation_180Deg;
-    } else if (between(sense, DEG_270_LOW, DEG_270_HIGH)) {
+    } else if(alphaRound > 160 || alphaRound < -160){
         xil_printf("270 Deg\n");
-        return rotation_90Deg;
-    } else {
-        xil_printf("Error\n");
-        return rotation_0Deg;
-    }
+        return rotation_270Deg;
+    } 
 }
   
 

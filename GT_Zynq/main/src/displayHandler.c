@@ -312,15 +312,18 @@ void override_rotateScreen(enum rotationEnum orientation) {
   case rotation_0Deg:
     break;
   case rotation_90Deg:
-    data = 3;
+    //data = 3;
+    data = 5;
+    offset = 0x50;
     break;
   case rotation_180Deg:
     data = 6;
     offset = 0x50;
     break;
   case rotation_270Deg:
-    data = 5;
-    offset = 0x50;
+    data = 3;
+    // data = 5;
+    // offset = 0x50;
     break;
   default:
     releaseOverride();
@@ -397,7 +400,7 @@ void writePixel(uint16_t pixelNumber, uint8_t color) {
 void drawMemory() {
 #define WAIT_FOR_GPIO_US 10
   // Wait for READY
-  uint32_t read = 0;
+  //uint32_t read = 0;
 
   // Wait for ready to be HIGH
   while ((gpio_portRead(&gpio, PORTB_CH) & (0x1 << TFT_DRIVER_READY)) != 1) {
