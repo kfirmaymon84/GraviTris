@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]C:\GraviTris\GT_Zynq\platform\export\platform\sw\boot\fsbl.elf
+	C:\GraviTris\GT_Zynq\main\_ide\bitstream\design_1_wrapper_06.bit
+	C:\GraviTris\GT_Zynq\main\build\main.elf
+}

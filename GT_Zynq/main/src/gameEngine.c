@@ -47,6 +47,7 @@ char emptyBlock[17] = { 0 };
 bool isGridHasChanged = true;
 PowerUps_S powerUps = { true, true, true };
 int nScore = 0;
+int nNextPiece = 0;
 /*
  * Function: gameTick
  * ----------------------------
@@ -61,7 +62,7 @@ void gameTick() {
 
 	// Game Logic
 	int nCurrentPiece = 0;
-	int nNextPiece = 0;
+	
 	int nCurrentRotation = 0;
 	int nCurrentX = GRID_WIDTH / 2;
 	int nCurrentY = 0;
@@ -450,7 +451,7 @@ void displayRotationHandler() {
 
 		//Redraw Score
 		initDisplay();
-
+        nextPiece(nNextPiece, true);
 		//Draw blocks in grid
 		for (int idx = 0; idx < (GRID_WIDTH * GRID_HEIGHT); idx++) {
 			if (grid[idx] != 0) {

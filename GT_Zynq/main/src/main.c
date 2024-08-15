@@ -39,25 +39,116 @@
 #include "gameEngine.h"
 #include "gpioHandler.h"
 
-
+void initGame();
 void initGPIO();
 void initBram();
 void initI2C();
+void serialDebug();
 
 XGpio gpio;
 XGpioPs gpioPs;
 XIicPs iicPs;
 XBram Bram; /* The Instance of the BRAM Driver */
 bool temp = true;
+
 int main() {
   init_platform();
 
   initGPIO();
   initBram();
   initI2C();
+  
   xil_printf("Start\n");
+  initGame();
 
-  while (1) {
+  cleanup_platform();
+  return 0;
+}
+
+void initGame(){
+    // Init display
+    displayInit();
+    initDisplayRotetion();
+
+    usleep(1000); // Delay 1 millisec
+    override_clearScreen();
+    gameTick();
+}
+
+
+void initGPIO() {
+  int status;
+  XGpio_Config *gpioConfig;
+  gpioConfig = XGpio_LookupConfig(XPAR_AXI_GPIO_0_BASEADDR);
+  if (gpioConfig == NULL)
+    xil_printf("GPIO Config Error...");
+
+  status = XGpio_CfgInitialize(&gpio, gpioConfig, gpioConfig->BaseAddress);
+  if (status != XST_SUCCESS)
+    xil_printf("GPIO initialization Failed...\r\n");
+
+  XGpioPs_Config *gpioPsConfig;
+  gpioPsConfig = XGpioPs_LookupConfig(XPAR_XGPIOPS_0_BASEADDR);
+  status = XGpioPs_CfgInitialize(&gpioPs, gpioPsConfig, gpioPsConfig->BaseAddr);
+  if (status != XST_SUCCESS)
+    xil_printf("Device Init Failed\n");
+
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_LEFT, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_RIGHT, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_DOWN, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, BTN_SPIN, 0);
+
+  XGpioPs_SetDirectionPin(&gpioPs, 50, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, 51, 0);
+  XGpioPs_SetDirectionPin(&gpioPs, 7, 1);
+  XGpioPs_SetOutputEnablePin(&gpioPs, 7, 1);
+}
+
+void initBram() {
+  XBram_Config *ConfigPtr;
+  int Status;
+
+  ConfigPtr = XBram_LookupConfig(XPAR_AXI_BRAM_0_BASEADDRESS);
+  if (ConfigPtr == (XBram_Config *)NULL) {
+    xil_printf("BRAM Config Error...");
+  }
+
+  Status = XBram_CfgInitialize(&Bram, ConfigPtr, ConfigPtr->CtrlBaseAddress);
+  if (Status != XST_SUCCESS) {
+    xil_printf("BRAM initialization Error...");
+  }
+}
+
+void initI2C() {
+  int Status;
+  XIicPs_Config *ConfigPtr;
+
+#define IIC_SCLK_RATE 100000
+#define SLV_MON_LOOP_COUNT 0x00FFFFFF /**< Slave Monitor Loop Count*/
+
+  ConfigPtr = XIicPs_LookupConfig(XPAR_I2C0_BASEADDR);
+  if (ConfigPtr == (XIicPs_Config *)NULL) {
+    xil_printf("I2C Config Error...");
+  }
+
+  Status = XIicPs_CfgInitialize(&iicPs, ConfigPtr, ConfigPtr->BaseAddress);
+  if (Status != XST_SUCCESS) {
+    xil_printf("I2C initialization Error...");
+  }
+
+  XIicPs_SetSClk(&iicPs, IIC_SCLK_RATE);
+  // u8 *ptr = {0x17,0x2f};
+  // for(uint8_t i = 0x01;i<127;i++){
+  //     Status = XIicPs_MasterSendPolled(&iicPs, ptr, 1, i);
+  //     if(Status == 0)
+  //         xil_printf("Found IC, Status = %d, Add = %2X\n",Status,i);
+  //     sleep(0.1);
+  // }
+
+}
+
+void serialDebug(){
+while (1) {
     char c;
     print("Enter cmd: \n");
 
@@ -143,78 +234,4 @@ int main() {
     }
     usleep(500000);
   }
-
-  cleanup_platform();
-  return 0;
-}
-
-void initGPIO() {
-  int status;
-  XGpio_Config *gpioConfig;
-  gpioConfig = XGpio_LookupConfig(XPAR_AXI_GPIO_0_BASEADDR);
-  if (gpioConfig == NULL)
-    xil_printf("GPIO Config Error...");
-
-  status = XGpio_CfgInitialize(&gpio, gpioConfig, gpioConfig->BaseAddress);
-  if (status != XST_SUCCESS)
-    xil_printf("GPIO initialization Failed...\r\n");
-
-  XGpioPs_Config *gpioPsConfig;
-  gpioPsConfig = XGpioPs_LookupConfig(XPAR_XGPIOPS_0_BASEADDR);
-  status = XGpioPs_CfgInitialize(&gpioPs, gpioPsConfig, gpioPsConfig->BaseAddr);
-  if (status != XST_SUCCESS)
-    xil_printf("Device Init Failed\n");
-
-  XGpioPs_SetDirectionPin(&gpioPs, BTN_LEFT, 0);
-  XGpioPs_SetDirectionPin(&gpioPs, BTN_RIGHT, 0);
-  XGpioPs_SetDirectionPin(&gpioPs, BTN_DOWN, 0);
-  XGpioPs_SetDirectionPin(&gpioPs, BTN_SPIN, 0);
-
-  XGpioPs_SetDirectionPin(&gpioPs, 50, 0);
-  XGpioPs_SetDirectionPin(&gpioPs, 51, 0);
-  XGpioPs_SetDirectionPin(&gpioPs, 7, 1);
-  XGpioPs_SetOutputEnablePin(&gpioPs, 7, 1);
-}
-
-void initBram() {
-  XBram_Config *ConfigPtr;
-  int Status;
-
-  ConfigPtr = XBram_LookupConfig(XPAR_AXI_BRAM_0_BASEADDRESS);
-  if (ConfigPtr == (XBram_Config *)NULL) {
-    xil_printf("BRAM Config Error...");
-  }
-
-  Status = XBram_CfgInitialize(&Bram, ConfigPtr, ConfigPtr->CtrlBaseAddress);
-  if (Status != XST_SUCCESS) {
-    xil_printf("BRAM initialization Error...");
-  }
-}
-
-void initI2C() {
-  int Status;
-  XIicPs_Config *ConfigPtr;
-
-#define IIC_SCLK_RATE 100000
-#define SLV_MON_LOOP_COUNT 0x00FFFFFF /**< Slave Monitor Loop Count*/
-
-  ConfigPtr = XIicPs_LookupConfig(XPAR_I2C0_BASEADDR);
-  if (ConfigPtr == (XIicPs_Config *)NULL) {
-    xil_printf("I2C Config Error...");
-  }
-
-  Status = XIicPs_CfgInitialize(&iicPs, ConfigPtr, ConfigPtr->BaseAddress);
-  if (Status != XST_SUCCESS) {
-    xil_printf("I2C initialization Error...");
-  }
-
-  XIicPs_SetSClk(&iicPs, IIC_SCLK_RATE);
-  // u8 *ptr = {0x17,0x2f};
-  // for(uint8_t i = 0x01;i<127;i++){
-  //     Status = XIicPs_MasterSendPolled(&iicPs, ptr, 1, i);
-  //     if(Status == 0)
-  //         xil_printf("Found IC, Status = %d, Add = %2X\n",Status,i);
-  //     sleep(0.1);
-  // }
-
 }
