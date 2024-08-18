@@ -45,7 +45,8 @@ uint16_t lastRotetion = 0;
 
 char emptyBlock[17] = { 0 };
 bool isGridHasChanged = true;
-PowerUps_S powerUps = { true, true, true };
+uint8_t powerUps = 3;
+bool isNeedToCompress = false;
 int nScore = 0;
 int nNextPiece = 0;
 /*
@@ -89,7 +90,6 @@ void gameTick() {
 
 		// Input ========================
 		buttonsTick();
-		//displayRotationHandler();
 		// Game Logic ===================
 		
 		// Handle player movement
@@ -253,7 +253,7 @@ void initDisplay() {
 	drawBorder(GRID_BORDER_POS_X, GRID_BORDER_POS_Y
 		, GRID_BORDER_WIDTH, GRID_BORDER_HEIGHT
 		, GRID_COLOR1, GRID_COLOR2);
-	drawPowerUps(&powerUps, true);
+    drawPowerUps(powerUps, true);
 }
 
 /*
@@ -447,8 +447,11 @@ void displayRotationHandler() {
 		lastOrientation = newOrientation;
 
 		//Rotate display
-		rotateTable(grid, (enum rotationEnum)newOrientation);
-
+        if(powerUps > 0){
+            rotateTable(grid, (enum rotationEnum)newOrientation);
+            powerUps--;
+        }
+		
 		//Redraw Score
 		initDisplay();
         nextPiece(nNextPiece, true);

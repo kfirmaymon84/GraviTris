@@ -239,7 +239,7 @@ void drawScore(uint16_t score, bool isDrawBorder) {
     }
 }
 
-void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
+void drawPowerUps(uint8_t powerUps, bool isDrawBorder) {
     //Board parameters
     const uint8_t xPos = 10;
     const uint8_t yPos = 50;
@@ -256,7 +256,7 @@ void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
         drawBorder(xPos, yPos, width, height, color1, color2);
     }
 
-    if (powerUps->isRotate) {
+    if (powerUps > 2) {
         drawBitmap((uint8_t*)rotate__iconrotate_icon24_24,
             xPos + 3,
             yPos + 3,
@@ -265,8 +265,8 @@ void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
             white);
     }
 
-    if (powerUps->isSpinOut) {
-        drawBitmap((uint8_t*)spinOut24_24spinOut24_24,
+    if (powerUps > 1) {
+        drawBitmap((uint8_t*)rotate__iconrotate_icon24_24,
             xPos + 3,
             yPos + 3 + iconHeight,
             iconWidth,
@@ -274,8 +274,8 @@ void drawPowerUps(PowerUps_S *powerUps, bool isDrawBorder) {
             white);
     }
 
-    if (powerUps->isShake) {
-        drawBitmap((uint8_t*)Shake_icon24_24,
+    if (powerUps > 0) {
+        drawBitmap((uint8_t*)rotate__iconrotate_icon24_24,
             xPos + 3,
             yPos + 3 + iconHeight + iconHeight,
             iconWidth,
@@ -307,7 +307,7 @@ void nextPiece(uint8_t piece, bool isDrawBorder) {
         for (int py = 0; py < 4; py++) {
             uint8_t block = tetromino[piece][idx++];
             if (block != 0) {
-                uint8_t color = ((piece + 1) << 4) + (piece + 1);
+                uint8_t color = block;
                 drawGameBlock(xPos + (py*10), //X
                     yPos + 10 + (px*10),//Y
                     color);//Color
