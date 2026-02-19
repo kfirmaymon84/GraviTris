@@ -54,6 +54,11 @@ static bool bRotateHold = true;
 static int nPieceCount = 0;
 static bool bGameOver = false;
 
+// input movement cooldown: number of game ticks to wait between repeated moves
+static int moveCooldown = 0;
+// how many ticks between allowed repeated moves (20ms tick -> 3 = ~60ms)
+#define MOVE_DELAY_TICKS 3
+
 void drawStartScreen() {
     clearScreen();
     // Centered title: "GraviTris" (9 chars)
@@ -183,7 +188,7 @@ void gameTick() {
     }
 
     // Timing =======================
-    delay_ms(GAME_TICK_DELAY_MS); // Small Step = 1 Game Tick
+    // (initial delay already applied at start of gameTick)
     nSpeedCount++;
     bool bForceDown = (nSpeedCount == nSpeed);
 
@@ -192,10 +197,25 @@ void gameTick() {
     
     // Game Logic ===================
     
-    // Handle player movement
-    nCurrentX += (buttons.isRightPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX + 1, nCurrentY)) ? 1 : 0;
-    nCurrentX -= (buttons.isLeftPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX - 1, nCurrentY)) ? 1 : 0;
-    nCurrentY += (buttons.isDownPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX, nCurrentY + 1)) ? 1 : 0;
+    // Handle player movement with cooldown to prevent overly fast slide when holding a button
+    if (moveCooldown > 0) {
+        moveCooldown--;
+    } else {
+        bool moved = false;
+        if (buttons.isRightPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX + 1, nCurrentY)) {
+            nCurrentX++;
+            moved = true;
+        } else if (buttons.isLeftPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX - 1, nCurrentY)) {
+            nCurrentX--;
+            moved = true;
+        } else if (buttons.isDownPressed && DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX, nCurrentY + 1)) {
+            nCurrentY++;
+            moved = true;
+        }
+        if (moved) {
+            moveCooldown = MOVE_DELAY_TICKS;
+        }
+    }
 
     // Rotate, but latch to stop wild spinning
     if (buttons.isSpinPressed)
