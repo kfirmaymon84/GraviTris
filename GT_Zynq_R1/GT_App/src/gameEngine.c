@@ -174,18 +174,14 @@ void gameTick() {
     buttonsTick();
 
     if (gameState == GAME_STATE_START_SCREEN) {
-        // if we just came back from playing via spin hold, wait for button release
-        if (buttons.isSpinPressed) {
-            bWaitForSpinRelease = true;
-        } else if (bWaitForSpinRelease) {
-            // button released; now accept new input
-            bWaitForSpinRelease = false;
+        // if we came back via reset, wait for spin button to be released
+        if (bWaitForSpinRelease && !buttons.isSpinPressed) {
+            bWaitForSpinRelease = false;  // button released; now accept input
         }
         
-        // only start game if button was released and is now pressed again
+        // only start game if not waiting for release, and any button is pressed
         if (!bWaitForSpinRelease && (buttons.isLeftPressed || buttons.isRightPressed || buttons.isDownPressed || buttons.isSpinPressed)) {
             resetGame();
-            // Wait for release? Or debounce
             delay_ms(200);   
         }
         return;
