@@ -56,8 +56,11 @@ static bool bGameOver = false;
 
 // track how long spin button is held; used to trigger reset
 static int rotateHoldTicks = 0;
-// number of ticks to consider 5 seconds (adjusted by delay)
-#define ROTATE_RESET_TICKS (5000 / GAME_TICK_DELAY_MS)
+// number of ticks to consider 3 seconds (adjusted by delay)
+#define ROTATE_RESET_TICKS (3000 / GAME_TICK_DELAY_MS)
+
+// flag to prevent immediate restart when returning to start screen
+static bool bWaitForSpinRelease = false;
 
 // input movement cooldown: number of game ticks to wait between repeated moves
 static int moveCooldown = 0;
@@ -104,6 +107,7 @@ void resetGame() {
     powerUps = INITIAL_POWERUPS;
     isGridHasChanged = true;
     bGameOver = false;
+    bWaitForSpinRelease = false;  // clear the wait-for-release flag
     
     // Reset Grid
     memset(grid, 0, GRID_WIDTH * GRID_HEIGHT);
@@ -170,7 +174,16 @@ void gameTick() {
     buttonsTick();
 
     if (gameState == GAME_STATE_START_SCREEN) {
-        if (buttons.isLeftPressed || buttons.isRightPressed || buttons.isDownPressed || buttons.isSpinPressed) {
+        // if we just came back from playing via spin hold, wait for button release
+        if (buttons.isSpinPressed) {
+            bWaitForSpinRelease = true;
+        } else if (bWaitForSpinRelease) {
+            // button released; now accept new input
+            bWaitForSpinRelease = false;
+        }
+        
+        // only start game if button was released and is now pressed again
+        if (!bWaitForSpinRelease && (buttons.isLeftPressed || buttons.isRightPressed || buttons.isDownPressed || buttons.isSpinPressed)) {
             resetGame();
             // Wait for release? Or debounce
             delay_ms(200);   
@@ -205,6 +218,7 @@ void gameTick() {
         rotateHoldTicks++;
         if (rotateHoldTicks >= ROTATE_RESET_TICKS) {
             rotateHoldTicks = 0;
+            bWaitForSpinRelease = true;  // signal that we need button release before next start
             gameState = GAME_STATE_START_SCREEN;
             drawStartScreen();
             // skip further game logic this tick
