@@ -1,0 +1,4 @@
+C:/GraviTris/GT_Zynq_R1/platform/zynq_fsbl/build/CMakeFiles/fsbl.elf.dir
+C:/GraviTris/GT_Zynq_R1/platform/zynq_fsbl/build/CMakeFiles/print_build_info.dir
+C:/GraviTris/GT_Zynq_R1/platform/zynq_fsbl/build/CMakeFiles/edit_cache.dir
+C:/GraviTris/GT_Zynq_R1/platform/zynq_fsbl/build/CMakeFiles/rebuild_cache.dir
