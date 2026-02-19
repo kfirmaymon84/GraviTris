@@ -54,6 +54,11 @@ static bool bRotateHold = true;
 static int nPieceCount = 0;
 static bool bGameOver = false;
 
+// track how long spin button is held; used to trigger reset
+static int rotateHoldTicks = 0;
+// number of ticks to consider 5 seconds (adjusted by delay)
+#define ROTATE_RESET_TICKS (5000 / GAME_TICK_DELAY_MS)
+
 // input movement cooldown: number of game ticks to wait between repeated moves
 static int moveCooldown = 0;
 // how many ticks between allowed repeated moves (20ms tick -> 3 = ~60ms)
@@ -195,6 +200,20 @@ void gameTick() {
     // Input ========================
     buttonsTick();
     
+    // handle long-press of spin button: if held 5 seconds, go back to start screen
+    if (buttons.isSpinPressed) {
+        rotateHoldTicks++;
+        if (rotateHoldTicks >= ROTATE_RESET_TICKS) {
+            rotateHoldTicks = 0;
+            gameState = GAME_STATE_START_SCREEN;
+            drawStartScreen();
+            // skip further game logic this tick
+            return;
+        }
+    } else {
+        rotateHoldTicks = 0;
+    }
+
     // Game Logic ===================
     
     // Handle player movement with cooldown to prevent overly fast slide when holding a button
