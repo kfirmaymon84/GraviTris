@@ -1,4 +1,4 @@
-# Install script for directory: C:/GraviTris/GT_Zynq_R1/platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/xilffs/src/include
+# Install script for directory: C:/Dev/GraviTris/GT_Zynq_R1/platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/xilffs/src/include
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

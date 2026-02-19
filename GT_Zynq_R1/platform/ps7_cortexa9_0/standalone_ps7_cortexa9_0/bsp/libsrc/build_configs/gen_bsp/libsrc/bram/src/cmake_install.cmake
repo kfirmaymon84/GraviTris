@@ -1,4 +1,4 @@
-# Install script for directory: C:/GraviTris/GT_Zynq_R1/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/bram/src
+# Install script for directory: C:/Dev/GraviTris/GT_Zynq_R1/platform/ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/libsrc/bram/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
