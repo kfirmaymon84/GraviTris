@@ -429,4 +429,17 @@ void nextPiece(uint8_t piece, bool isDrawBorder) {
             }
         }
     }
+}// preview helper: draw a 4x4 tetromino at specified screen coordinates
+void drawTetrominoPreview(uint8_t piece, uint8_t x, uint8_t y) {
+    uint16_t idx2 = 0;
+    for (int row = 0; row < 4; row++) {
+        for (int col = 0; col < 4; col++) {
+            uint8_t block = tetromino[piece][idx2++];
+            if (block != 0) {
+                drawGameBlock(x + col * BLOCK_SIZE,
+                              y + row * BLOCK_SIZE,
+                              block);
+            }
+        }
+    }
 }

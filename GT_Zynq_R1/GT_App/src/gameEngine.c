@@ -10,6 +10,10 @@
 #include "ioHandler.h"
 #include "gameConfig.h"
 
+// minimal forward declaration for XTime_GetTime (avoid missing include path)
+typedef unsigned long long XTime;
+extern void XTime_GetTime(XTime *Xtime_Global);
+
 extern s_buttons buttons;
 
 void gameTick();
@@ -64,7 +68,23 @@ void drawStartScreen() {
     // Scale 2: 8 * 8 * 2 = 128 width. Screen 240. Margin (240-128)/2 = 56.
     drawStringScaled("TO START", 56, 140, green, 2);
     
-    // Maybe draw a demo piece or something visual?
+    // draw three random tetromino previews centred below the start prompt
+    {
+        const uint8_t startY = 170;           // y coordinate for the top of previews
+        const uint8_t tetWidth = 4 * BLOCK_SIZE; // width of one preview
+        const uint8_t gap = 10;                // gap between previews
+        const uint8_t totalW = 3 * tetWidth + 2 * gap;
+        const uint8_t startX = (DISPLAY_WIDTH - totalW) / 2;
+
+        // pick three random pieces each time
+        uint8_t p0 = rand() % NUM_TETROMINOS;
+        uint8_t p1 = rand() % NUM_TETROMINOS;
+        uint8_t p2 = rand() % NUM_TETROMINOS;
+
+        drawTetrominoPreview(p0, startX,                        startY);
+        drawTetrominoPreview(p1, startX + tetWidth + gap,       startY);
+        drawTetrominoPreview(p2, startX + 2 * (tetWidth + gap), startY);
+    }
 }
 
 void resetGame() {
@@ -109,6 +129,13 @@ void resetGame() {
  *   returns: None
  */
 void initGameEngine() {
+    // seed random number generator using hardware timer to vary between boots
+    {
+        XTime t;
+        XTime_GetTime(&t);
+        srand((unsigned)(t & 0xFFFFFFFF));
+    }
+
     // Create Screen Buffer
     displayInit();
     clrBuff(240, 240);

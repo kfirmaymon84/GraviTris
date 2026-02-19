@@ -1,2 +1,23 @@
 
+# ignore zipped exports
 GT_Zybo.zip
+
+# build outputs and generated files
+**/build/
+**/build_*/
+**/bsp/libsrc/build_configs/**
+**/platform/**/build/**
+**/*.log
+**/.ninja*
+
+# IDE/workspace journals
+**/_ide/
+**/*workspace_journal.py
+
+# compiled Python files
+*.pyc
+__pycache__/
+
+# other temporary files
+*.tmp
+*.bak

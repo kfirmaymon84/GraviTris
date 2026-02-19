@@ -60,6 +60,10 @@ uint8_t drawBorder(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t 
 void drawEmpty(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
 void drawPowerUps(uint8_t powerUps, bool isDrawBorder);
 
+// draw a 4x4 tetromino grid at a given position (top-left)
+// uses BLOCK_SIZE spacing from gameConfig
+void drawTetrominoPreview(uint8_t piece, uint8_t x, uint8_t y);
+
 void drawScore(uint16_t score, bool isDrawBorder);
 void nextPiece(uint8_t piece, bool isDrawBorder);
 
