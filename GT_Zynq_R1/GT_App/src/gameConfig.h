@@ -1,0 +1,36 @@
+#ifndef GAME_CONFIG_H
+#define GAME_CONFIG_H
+
+// Grid Configuration
+#define GRID_WIDTH 16
+#define GRID_HEIGHT 16
+#define BLOCK_SIZE 10
+#define BOARD_BORDER_WIDTH 3
+
+// Grid Position
+#define GRID_POS_X 41
+#define GRID_POS_Y 41
+#define GRID_BORDER_POS_X (GRID_POS_X - BOARD_BORDER_WIDTH)
+#define GRID_BORDER_POS_Y (GRID_POS_Y - BOARD_BORDER_WIDTH)
+
+// Grid Dimensions with Border
+#define GRID_BORDER_WIDTH (GRID_WIDTH * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH))
+#define GRID_BORDER_HEIGHT (GRID_HEIGHT * BLOCK_SIZE + (2 * BOARD_BORDER_WIDTH))
+
+// Colors
+#define GRID_COLOR1 white
+#define GRID_COLOR2 green
+
+// Game Logic
+#define INITIAL_SPEED 20
+#define SPEED_INCREMENT_THRESHOLD 50
+#define MIN_SPEED 10
+#define SCORE_PER_PIECE 25
+#define SCORE_PER_LINE 100
+#define NUM_TETROMINOS 7
+#define TETROMINO_SIDE 4
+#define TETROMINO_ARRAY_SIZE 17
+#define GAME_TICK_DELAY_MS 50
+#define INITIAL_POWERUPS 3
+
+#endif // GAME_CONFIG_H
